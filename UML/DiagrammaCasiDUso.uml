@@ -1,0 +1,70 @@
+@startuml
+left to right direction
+
+actor Bibliotecario
+
+package "Gestione Utenti" {
+
+    usecase "RegistrazioneUtente" as UC1
+    usecase "ModificaUtente" as UC2
+    usecase "EliminaUtente" as UC3
+    usecase "MostraElencoUtenti" as UC4
+
+    usecase "CercaUtenti" as UC5
+    usecase "Ricerca per Cognome" as UC5a
+    usecase "Ricerca per Matricola" as UC5b
+    usecase "Nessun Utente Trovato" as UC5c
+
+    UC5 --> UC5a : <<include>>
+    UC5 --> UC5b : <<include>>
+
+    UC5 --> UC5c : <<extend>>
+}
+
+' ===========================
+'   GESTIONE LIBRI
+' ===========================
+package "Gestione Libri" {
+
+    usecase "RegistraLibro" as UC6
+    usecase "ModificaLibro" as UC7
+    usecase "EliminaLibro" as UC8
+    usecase "MostraElencoLibri" as UC9
+
+    usecase "CercaLibri" as UC10
+    usecase "Ricerca per Titolo" as UC10a
+    usecase "Ricerca per Autore" as UC10b
+    usecase "Ricerca per ISBN" as UC10c
+    usecase "Nessun Libro Trovato" as UC10d
+
+    UC10 --> UC10a : <<include>>
+    UC10 --> UC10b : <<include>>
+    UC10 --> UC10c : <<include>>
+
+    UC10 --> UC10d : <<extend>>
+}
+
+package "Gestione Prestiti" {
+
+    usecase "RegistraPrestito" as UC11
+    usecase "RestituzionePrestito" as UC12
+    usecase "MostraElencoPrestiti" as UC13
+}
+
+
+Bibliotecario --> UC1
+Bibliotecario --> UC2
+Bibliotecario --> UC3
+Bibliotecario --> UC4
+Bibliotecario --> UC5
+
+Bibliotecario --> UC6
+Bibliotecario --> UC7
+Bibliotecario --> UC8
+Bibliotecario --> UC9
+Bibliotecario --> UC10
+
+Bibliotecario --> UC11
+Bibliotecario --> UC12
+Bibliotecario --> UC13
+@enduml

@@ -1,0 +1,72 @@
+@startuml
+class Biblioteca {
+    - utenti : Collection<Utente>
+    - libri : Collection<Libro>
+    - prestiti : Collection<Prestito>
+    + registraUtente()
+    + cercaUtente()
+    + elencoUtenti()
+    + eliminaUtente()
+    + registraLibro()
+    + cercaLibro()
+    + elencoLibri()
+    + eliminaLibro()
+    + registraPrestito()
+    + eliminaPrestito()
+}
+
+class Utente {
+    - nome : String
+    - cognome : String
+    - email : String
+    - matricola : String
+
+    + Utente()
+    + setNome()
+    + setCognome()
+    + setEmail()
+    + setMatricola()
+    + getNome()
+    + getCognome()
+    + getEmail()
+    + getMatricola()
+    + toString()
+}
+
+class Libro {
+    - titolo : String
+    - autore : String
+    - annoPubblicazione : int
+    - nCopie: int
+    - ISBN : String
+    + Libro()
+    + setTitolo()
+    + setAutore()
+    + setAnnoPublicazione()
+    + setNCopie()
+    + setISBN()
+    + getTitolo()
+    + getAutore()
+    + getAnnoPublicazione()
+    + getNCopie()
+    + getISBN()
+    + toString() 
+}
+
+class Prestito {
+    - dataPrestito : Date
+    - dataRestituzione : Date
+    + Prestito()
+    + getDataPrestito()
+    + getDataRestituzione()
+    + setDataRestituzione()
+}
+
+Biblioteca "1" -- "0..*" Utente
+Biblioteca "1" -- "0..*" Bibliotecario
+Biblioteca "1" -- "0..*" Libro
+Biblioteca "1" -- "0..*" Prestito
+
+Utente "1" -- "0..3" Prestito
+Libro "1" -- "0..1" Prestito
+@enduml
