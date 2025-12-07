@@ -63,7 +63,6 @@ class Prestito {
 }
 
 Biblioteca "1" -- "0..*" Utente
-Biblioteca "1" -- "0..*" Bibliotecario
 Biblioteca "1" -- "0..*" Libro
 Biblioteca "1" -- "0..*" Prestito
 
