@@ -54,8 +54,12 @@ class Libro {
 }
 
 class Prestito {
+    - utente : Utente
+    - libro : Libro
     - dataPrestito : Date
     - dataRestituzione : Date
+    + getUtente()
+    + getLibro
     + Prestito()
     + getDataPrestito()
     + getDataRestituzione()
@@ -68,5 +72,5 @@ Biblioteca "1" -- "0..*" Libro
 Biblioteca "1" -- "0..*" Prestito
 
 Utente "1" -- "0..3" Prestito
-Libro "1" -- "0..1" Prestito
+Libro "1" -- "0..*" Prestito
 @enduml
