@@ -59,7 +59,7 @@ class Prestito {
     - dataPrestito : Date
     - dataRestituzione : Date
     + getUtente()
-    + getLibro
+    + getLibro()
     + Prestito()
     + getDataPrestito()
     + getDataRestituzione()
