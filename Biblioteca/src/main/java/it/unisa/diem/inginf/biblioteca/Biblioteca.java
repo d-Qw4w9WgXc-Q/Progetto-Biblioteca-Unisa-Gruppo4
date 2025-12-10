@@ -4,6 +4,7 @@ import java.util.Collection;
 import java.util.Comparator;
 import java.util.TreeSet;
 import it.unisa.diem.inginf.biblioteca.types.*;
+import java.util.Arrays;
 
 public class Biblioteca {
 
@@ -11,17 +12,17 @@ public class Biblioteca {
     Collection<Libro> libri;
     Collection<Prestito> prestiti;
     
-    Biblioteca() {
+    public Biblioteca() {
         utenti = new TreeSet<>();
         libri = new TreeSet<>();
         prestiti = new TreeSet<>();
     }
     
-    boolean registraUtente(Utente e) {
+    public boolean registraUtente(Utente e) {
         return utenti.add(e);
     }
     
-    Utente cercaUtente(Utente e, Comparator<Utente> c) {
+    public Utente cercaUtente(Utente e, Comparator<Utente> c) {
         for(Utente utente : utenti) {
             if(c.compare(utente, e) == 0) return utente;
         }
@@ -29,15 +30,15 @@ public class Biblioteca {
         return null;
     }
     
-    Collection<Utente> elencoUtenti(Comparator<Utente> c) {
+    public Collection<Utente> elencoUtenti(Comparator<Utente> c) {
         return null; // TODO
     }
     
-    boolean eliminaUtente(Utente e) {
+    public boolean eliminaUtente(Utente e) {
         return utenti.remove(e);
     }
     
-    boolean eliminaUtente(Utente e, Comparator<Utente> c) {
+    public boolean eliminaUtente(Utente e, Comparator<Utente> c) {
         for(Utente utente : utenti) {
             if(c.compare(e, utente) == 0) {
                 utenti.remove(utente);
@@ -48,11 +49,11 @@ public class Biblioteca {
         return false;
     }
     
-    boolean registraLibro(Libro e) {
+    public boolean registraLibro(Libro e) {
         return libri.add(e);
     }
     
-    Libro cercaLibro(Libro e, Comparator<Libro> c) {
+    public Libro cercaLibro(Libro e, Comparator<Libro> c) {
         for(Libro libro : libri) {
             if(c.compare(libro, e) == 0) return libro;
         }
@@ -64,11 +65,11 @@ public class Biblioteca {
         return null; // TODO
     }
     
-    boolean eliminaLibro(Libro e) {
+    public boolean eliminaLibro(Libro e) {
         return libri.remove(e);
     }
     
-    boolean eliminaLibro(Libro e, Comparator<Libro> c) {
+    public boolean eliminaLibro(Libro e, Comparator<Libro> c) {
         for(Libro libro : libri) {
             if(c.compare(e, libro) == 0) {
                 libri.remove(libro);
@@ -79,15 +80,15 @@ public class Biblioteca {
         return false;
     }
     
-    boolean registraPrestito(Prestito e) {
+    public boolean registraPrestito(Prestito e) {
         return prestiti.add(e);
     }
     
-    boolean eliminaPrestito(Prestito e) {
+    public boolean eliminaPrestito(Prestito e) {
         return prestiti.remove(e);
     }
     
-    boolean eliminaPrestito(Prestito e, Comparator<Prestito> c) {
+    public boolean eliminaPrestito(Prestito e, Comparator<Prestito> c) {
         for(Prestito prestito : prestiti) {
             if(c.compare(e, prestito) == 0) {
                 prestiti.remove(prestito);
@@ -99,6 +100,11 @@ public class Biblioteca {
     }
     
     public static void main(String[] args) {
-        System.out.println("Hello World!");
+        Utente u = new Utente("Mario", "Rossi", "0612709907", "m.rossi15@studenti.unisa.it");
+        System.out.println(u);
+        
+        String[] autori = {"Mario", "Gianni"};
+        Libro l = new Libro("Asdafsd", "isbn", Arrays.asList(autori), 15, 1970);
+        System.out.println(l);
     }
 }

@@ -2,6 +2,7 @@ package it.unisa.diem.inginf.biblioteca.types;
 
 import java.util.Collection;
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class Libro {
     private String titolo;
@@ -10,7 +11,7 @@ public class Libro {
     private int nCopie;
     private int annoPublicazione;
 
-    Libro(String titolo, String ISBN, Collection<String> autori, int nCopie, int annoPublicazione) {
+    public Libro(String titolo, String ISBN, Collection<String> autori, int nCopie, int annoPublicazione) {
         this.titolo = titolo;
         this.ISBN = ISBN;
         this.nCopie = nCopie;
@@ -59,6 +60,54 @@ public class Libro {
         this.annoPublicazione = annoPublicazione;
     }
     
-    // TODO toString
+    @Override
+    public String toString() {
+        String ret = String.format("Titolo: %s, ISBN: %s, Numero copie: %d, Anno publicazione: %d, Autori:\n", titolo, ISBN, nCopie, annoPublicazione);
+        for(String autore : autori) {
+            ret += "- " + autore + "\n";
+        }
+        
+        return ret;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 5;
+        hash = 89 * hash + Objects.hashCode(this.titolo);
+        hash = 89 * hash + Objects.hashCode(this.ISBN);
+        hash = 89 * hash + Objects.hashCode(this.autori);
+        hash = 89 * hash + this.nCopie;
+        hash = 89 * hash + this.annoPublicazione;
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Libro other = (Libro) obj;
+        if (this.nCopie != other.nCopie) {
+            return false;
+        }
+        if (this.annoPublicazione != other.annoPublicazione) {
+            return false;
+        }
+        if (!Objects.equals(this.titolo, other.titolo)) {
+            return false;
+        }
+        if (!Objects.equals(this.ISBN, other.ISBN)) {
+            return false;
+        }
+        return Objects.equals(this.autori, other.autori);
+    }
+    
+    
 }
 

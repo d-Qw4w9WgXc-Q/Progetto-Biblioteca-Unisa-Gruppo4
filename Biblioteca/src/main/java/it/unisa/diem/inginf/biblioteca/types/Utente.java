@@ -1,5 +1,7 @@
 package it.unisa.diem.inginf.biblioteca.types;
 
+import java.util.Objects;
+
 
 public class Utente {
     private String nome;
@@ -7,7 +9,7 @@ public class Utente {
     private String matricola;
     private String email;
 
-    Utente(String nome, String cognome, String matricola, String email) {
+    public Utente(String nome, String cognome, String matricola, String email) {
         this.nome = nome;
         this.cognome = cognome;
         this.matricola = matricola;
@@ -46,5 +48,44 @@ public class Utente {
         this.email = email;
     }
     
-    // TODO toString
+    @Override
+    public String toString() {
+        return String.format("Nome: %s, Cognome: %s, Matricola: %s, Email: %s", nome, cognome, matricola, email);
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 3;
+        hash = 83 * hash + Objects.hashCode(this.nome);
+        hash = 83 * hash + Objects.hashCode(this.cognome);
+        hash = 83 * hash + Objects.hashCode(this.matricola);
+        hash = 83 * hash + Objects.hashCode(this.email);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Utente other = (Utente) obj;
+        if (!Objects.equals(this.nome, other.nome)) {
+            return false;
+        }
+        if (!Objects.equals(this.cognome, other.cognome)) {
+            return false;
+        }
+        if (!Objects.equals(this.matricola, other.matricola)) {
+            return false;
+        }
+        return Objects.equals(this.email, other.email);
+    }
+    
+    
 }
