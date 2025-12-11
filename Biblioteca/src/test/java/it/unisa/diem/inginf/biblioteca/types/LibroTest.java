@@ -1,9 +1,6 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/UnitTests/JUnit5TestClass.java to edit this template
- */
 package it.unisa.diem.inginf.biblioteca.types;
 
+import java.util.Arrays;
 import java.util.Collection;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.AfterAll;
@@ -18,24 +15,18 @@ import static org.junit.jupiter.api.Assertions.*;
  */
 public class LibroTest {
     
-    public LibroTest() {
-    }
+    private Libro libro;
     
     @BeforeAll
-    public static void setUpClass() {
+    public void setUpClass() {
+        String[] autori = {"J.R.R. Tolkien", "Alan Lee", "Ottavio Fatica"};
+        libro = new Libro("Il Signore Degli Anelli", "978-88-301-0471-6", Arrays.asList(autori), 7, 2020);
     }
     
     @AfterAll
     public static void tearDownClass() {
     }
     
-    @BeforeEach
-    public void setUp() {
-    }
-    
-    @AfterEach
-    public void tearDown() {
-    }
 
     /**
      * Test of getTitolo method, of class Libro.
