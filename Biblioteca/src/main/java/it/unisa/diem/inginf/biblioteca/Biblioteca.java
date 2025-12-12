@@ -61,7 +61,7 @@ public class Biblioteca {
         return null;
     }
     
-    Collection<Libro> elencoLibri(Comparator<Libro> c) {
+    public Collection<Libro> elencoLibri(Comparator<Libro> c) {
         return null; // TODO
     }
     
