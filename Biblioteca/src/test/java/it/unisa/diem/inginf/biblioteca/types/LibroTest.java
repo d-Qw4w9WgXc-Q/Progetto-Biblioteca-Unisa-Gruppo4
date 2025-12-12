@@ -2,22 +2,19 @@ package it.unisa.diem.inginf.biblioteca.types;
 
 import java.util.Arrays;
 import java.util.Collection;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
  *
  * @author nebbi
  */
+@TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class LibroTest {
     
     private Libro libro;
     
-    @BeforeAll
+    @BeforeEach
     public void setUpClass() {
         String[] autori = {"J.R.R. Tolkien", "Alan Lee", "Ottavio Fatica"};
         libro = new Libro("Il Signore Degli Anelli", "978-88-301-0471-6", Arrays.asList(autori), 7, 2020);
@@ -33,13 +30,8 @@ public class LibroTest {
      */
     @Test
     public void testGetTitolo() {
-        System.out.println("getTitolo");
-        Libro instance = null;
-        String expResult = "";
-        String result = instance.getTitolo();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        String titoloAtteso = "Il Signore Degli Anelli";
+        assertEquals(titoloAtteso, libro.getTitolo());
     }
 
     /**
@@ -47,12 +39,9 @@ public class LibroTest {
      */
     @Test
     public void testSetTitolo() {
-        System.out.println("setTitolo");
-        String titolo = "";
-        Libro instance = null;
-        instance.setTitolo(titolo);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        String titoloAtteso = "Nuovo Titolo";
+        libro.setTitolo(titoloAtteso);
+        assertEquals(titoloAtteso, libro.getTitolo());
     }
 
     /**
@@ -60,13 +49,8 @@ public class LibroTest {
      */
     @Test
     public void testGetISBN() {
-        System.out.println("getISBN");
-        Libro instance = null;
-        String expResult = "";
-        String result = instance.getISBN();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        String ISBNAtteso = "978-88-301-0471-6";
+        assertEquals(ISBNAtteso, libro.getISBN());
     }
 
     /**
@@ -74,12 +58,9 @@ public class LibroTest {
      */
     @Test
     public void testSetISBN() {
-        System.out.println("setISBN");
-        String ISBN = "";
-        Libro instance = null;
-        instance.setISBN(ISBN);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        String ISBNAtteso = "123-45-678-9101-1";
+        libro.setISBN(ISBNAtteso);
+        assertEquals(ISBNAtteso, libro.getISBN());
     }
 
     /**
@@ -87,13 +68,8 @@ public class LibroTest {
      */
     @Test
     public void testGetAutori() {
-        System.out.println("getAutori");
-        Libro instance = null;
-        Collection<String> expResult = null;
-        Collection<String> result = instance.getAutori();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        String[] autoriAttesi = {"J.R.R. Tolkien", "Alan Lee", "Ottavio Fatica"};
+        assertIterableEquals(Arrays.asList(autoriAttesi), libro.getAutori());
     }
 
     /**
@@ -101,12 +77,9 @@ public class LibroTest {
      */
     @Test
     public void testSetAutori() {
-        System.out.println("setAutori");
-        Collection<String> autori = null;
-        Libro instance = null;
-        instance.setAutori(autori);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        String[] autoriAttesi = {"autoreA", "autoreB", "autoreC"};
+        libro.setAutori(Arrays.asList(autoriAttesi));
+        assertIterableEquals(Arrays.asList(autoriAttesi),libro.getAutori());
     }
 
     /**
@@ -114,13 +87,7 @@ public class LibroTest {
      */
     @Test
     public void testGetnCopie() {
-        System.out.println("getnCopie");
-        Libro instance = null;
-        int expResult = 0;
-        int result = instance.getnCopie();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        assertEquals(7, libro.getnCopie());
     }
 
     /**
@@ -128,12 +95,9 @@ public class LibroTest {
      */
     @Test
     public void testSetnCopie() {
-        System.out.println("setnCopie");
-        int nCopie = 0;
-        Libro instance = null;
-        instance.setnCopie(nCopie);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        int nCopieAtteso = 0;
+        libro.setnCopie(nCopieAtteso);
+        assertEquals(nCopieAtteso, libro.getnCopie());
     }
 
     /**
@@ -141,13 +105,8 @@ public class LibroTest {
      */
     @Test
     public void testGetAnnoPublicazione() {
-        System.out.println("getAnnoPublicazione");
-        Libro instance = null;
-        int expResult = 0;
-        int result = instance.getAnnoPublicazione();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        int annoPubblicazioneAtteso = 2020;
+        assertEquals(annoPubblicazioneAtteso, libro.getAnnoPublicazione());
     }
 
     /**
@@ -155,12 +114,9 @@ public class LibroTest {
      */
     @Test
     public void testSetAnnoPublicazione() {
-        System.out.println("setAnnoPublicazione");
-        int annoPublicazione = 0;
-        Libro instance = null;
-        instance.setAnnoPublicazione(annoPublicazione);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        int annoPubblicazioneAtteso = 1234;
+        libro.setAnnoPublicazione(annoPubblicazioneAtteso);
+        assertEquals(annoPubblicazioneAtteso, libro.getAnnoPublicazione());
     }
 
     /**
@@ -168,42 +124,8 @@ public class LibroTest {
      */
     @Test
     public void testToString() {
-        System.out.println("toString");
-        Libro instance = null;
-        String expResult = "";
-        String result = instance.toString();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of hashCode method, of class Libro.
-     */
-    @Test
-    public void testHashCode() {
-        System.out.println("hashCode");
-        Libro instance = null;
-        int expResult = 0;
-        int result = instance.hashCode();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of equals method, of class Libro.
-     */
-    @Test
-    public void testEquals() {
-        System.out.println("equals");
-        Object obj = null;
-        Libro instance = null;
-        boolean expResult = false;
-        boolean result = instance.equals(obj);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        String outputAtteso = "Titolo: Il Signore Degli Anelli, ISBN: 978-88-301-0471-6, Numero copie: 7, Anno publicazione: 2020, Autori:\n- J.R.R. Tolkien\n- Alan Lee\n- Ottavio Fatica\n";
+        assertEquals(outputAtteso, libro.toString());
     }
     
 }
