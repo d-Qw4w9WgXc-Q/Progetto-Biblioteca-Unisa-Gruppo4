@@ -4,7 +4,7 @@ import java.util.Collection;
 import java.util.Comparator;
 import java.util.TreeSet;
 import it.unisa.diem.inginf.biblioteca.types.*;
-import java.util.Arrays;
+import it.unisa.diem.inginf.biblioteca.ui.App;
 
 public class Biblioteca {
 
@@ -100,11 +100,6 @@ public class Biblioteca {
     }
     
     public static void main(String[] args) {
-        Utente u = new Utente("Mario", "Rossi", "0612709907", "m.rossi15@studenti.unisa.it");
-        System.out.println(u);
-        
-        String[] autori = {"Mario", "Gianni"};
-        Libro l = new Libro("Asdafsd", "isbn", Arrays.asList(autori), 15, 1970);
-        System.out.println(l);
+        App.launch(App.class, args);
     }
 }
