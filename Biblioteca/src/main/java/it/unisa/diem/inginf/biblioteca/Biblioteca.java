@@ -31,7 +31,9 @@ public class Biblioteca {
     }
     
     public Collection<Utente> elencoUtenti(Comparator<Utente> c) {
-        return null; // TODO
+        Collection<Utente> ret = new TreeSet<>(c);
+        ret.addAll(utenti);
+        return ret;
     }
     
     public boolean eliminaUtente(Utente e) {
@@ -61,8 +63,10 @@ public class Biblioteca {
         return null;
     }
     
-    Collection<Libro> elencoLibri(Comparator<Libro> c) {
-        return null; // TODO
+    public Collection<Libro> elencoLibri(Comparator<Libro> c) {
+        Collection<Libro> ret = new TreeSet<>(c);
+        ret.addAll(libri);
+        return ret;
     }
     
     public boolean eliminaLibro(Libro e) {
@@ -97,6 +101,12 @@ public class Biblioteca {
         }
         
         return false;
+    }
+    
+    public Collection<Prestito> elencoPrestiti(Comparator<Prestito> c) {
+        Collection<Prestito> ret = new TreeSet<>(c);
+        ret.addAll(prestiti);
+        return ret;
     }
     
     public static void main(String[] args) {
