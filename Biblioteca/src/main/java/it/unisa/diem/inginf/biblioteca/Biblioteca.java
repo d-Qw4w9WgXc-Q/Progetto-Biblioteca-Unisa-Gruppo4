@@ -4,18 +4,19 @@ import java.util.Collection;
 import java.util.Comparator;
 import java.util.TreeSet;
 import it.unisa.diem.inginf.biblioteca.types.*;
-import java.util.Arrays;
+import it.unisa.diem.inginf.biblioteca.ui.App;
+import javafx.collections.*;
 
 public class Biblioteca {
 
-    Collection<Utente> utenti;
-    Collection<Libro> libri;
-    Collection<Prestito> prestiti;
+    ObservableList<Utente> utenti;
+    ObservableList<Libro> libri;
+    ObservableList<Prestito> prestiti;
     
     public Biblioteca() {
-        utenti = new TreeSet<>();
-        libri = new TreeSet<>();
-        prestiti = new TreeSet<>();
+        utenti = FXCollections.observableArrayList();
+        libri = FXCollections.observableArrayList();
+        prestiti = FXCollections.observableArrayList();
     }
     
     public boolean registraUtente(Utente e) {
@@ -30,8 +31,12 @@ public class Biblioteca {
         return null;
     }
     
-    public Collection<Utente> elencoUtenti(Comparator<Utente> c) {
-        return null; // TODO
+    public ObservableList<Utente> getUtenti() {
+        return utenti;
+    }
+    
+    public void ordinaUtenti(Comparator<Utente> c) {
+        utenti.sort(c);
     }
     
     public boolean eliminaUtente(Utente e) {
@@ -61,8 +66,12 @@ public class Biblioteca {
         return null;
     }
     
-    public Collection<Libro> elencoLibri(Comparator<Libro> c) {
-        return null; // TODO
+    public ObservableList<Libro> getLibri() {
+        return libri;
+    }
+    
+    public void ordinaLibri(Comparator<Libro> c) {
+        libri.sort(c);
     }
     
     public boolean eliminaLibro(Libro e) {
@@ -99,12 +108,15 @@ public class Biblioteca {
         return false;
     }
     
+    public ObservableList<Prestito> getPrestiti() {
+        return prestiti;
+    }
+    
+    public void ordinaPrestiti(Comparator<Prestito> c) {
+        prestiti.sort(c);
+    }
+    
     public static void main(String[] args) {
-        Utente u = new Utente("Mario", "Rossi", "0612709907", "m.rossi15@studenti.unisa.it");
-        System.out.println(u);
-        
-        String[] autori = {"Mario", "Gianni"};
-        Libro l = new Libro("Asdafsd", "isbn", Arrays.asList(autori), 15, 1970);
-        System.out.println(l);
+        App.launch(App.class, args);
     }
 }
