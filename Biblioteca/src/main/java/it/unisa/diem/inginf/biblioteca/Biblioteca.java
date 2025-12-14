@@ -5,17 +5,18 @@ import java.util.Comparator;
 import java.util.TreeSet;
 import it.unisa.diem.inginf.biblioteca.types.*;
 import it.unisa.diem.inginf.biblioteca.ui.App;
+import javafx.collections.*;
 
 public class Biblioteca {
 
-    Collection<Utente> utenti;
-    Collection<Libro> libri;
-    Collection<Prestito> prestiti;
+    ObservableList<Utente> utenti;
+    ObservableList<Libro> libri;
+    ObservableList<Prestito> prestiti;
     
     public Biblioteca() {
-        utenti = new TreeSet<>();
-        libri = new TreeSet<>();
-        prestiti = new TreeSet<>();
+        utenti = FXCollections.observableArrayList();
+        libri = FXCollections.observableArrayList();
+        prestiti = FXCollections.observableArrayList();
     }
     
     public boolean registraUtente(Utente e) {
@@ -30,10 +31,12 @@ public class Biblioteca {
         return null;
     }
     
-    public Collection<Utente> elencoUtenti(Comparator<Utente> c) {
-        Collection<Utente> ret = new TreeSet<>(c);
-        ret.addAll(utenti);
-        return ret;
+    public ObservableList<Utente> getUtenti() {
+        return utenti;
+    }
+    
+    public void ordinaUtenti(Comparator<Utente> c) {
+        utenti.sort(c);
     }
     
     public boolean eliminaUtente(Utente e) {
@@ -63,10 +66,12 @@ public class Biblioteca {
         return null;
     }
     
-    public Collection<Libro> elencoLibri(Comparator<Libro> c) {
-        Collection<Libro> ret = new TreeSet<>(c);
-        ret.addAll(libri);
-        return ret;
+    public ObservableList<Libro> getLibri() {
+        return libri;
+    }
+    
+    public void ordinaLibri(Comparator<Libro> c) {
+        libri.sort(c);
     }
     
     public boolean eliminaLibro(Libro e) {
@@ -103,10 +108,12 @@ public class Biblioteca {
         return false;
     }
     
-    public Collection<Prestito> elencoPrestiti(Comparator<Prestito> c) {
-        Collection<Prestito> ret = new TreeSet<>(c);
-        ret.addAll(prestiti);
-        return ret;
+    public ObservableList<Prestito> getPrestiti() {
+        return prestiti;
+    }
+    
+    public void ordinaPrestiti(Comparator<Prestito> c) {
+        prestiti.sort(c);
     }
     
     public static void main(String[] args) {

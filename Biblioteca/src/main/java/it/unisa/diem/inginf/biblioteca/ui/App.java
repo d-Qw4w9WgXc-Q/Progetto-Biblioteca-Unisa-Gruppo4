@@ -11,6 +11,7 @@ import javafx.scene.Node;
 import javafx.event.*;
 import javafx.beans.binding.*;
 import javafx.beans.property.*;
+import javafx.collections.FXCollections;
 
 
 public class App extends Application {
@@ -19,15 +20,19 @@ public class App extends Application {
         
         Biblioteca biblioteca = new Biblioteca();
         
+        
         ChoiceBox mode = new ChoiceBox();
         mode.getItems().addAll("Utenti", "Libri", "Prestiti");
         mode.setValue("Utenti");
         
-        VBox l_utenti = new VBox();
-        VBox l_libri = new VBox();
-        VBox l_prestiti = new VBox();
+        ListView l_utenti = new ListView(biblioteca.getUtenti());
+        ListView l_libri = new ListView(biblioteca.getLibri());
+        ListView l_prestiti = new ListView(biblioteca.getPrestiti());
         
-        l_utenti.getChildren().add(new Label("Test"));
+        l_utenti.setPrefSize(500, 400);
+        l_libri.setPrefSize(500, 400);
+        l_prestiti.setPrefSize(500, 400);
+
         
         ScrollPane scrollpane = new ScrollPane();
         scrollpane.setPrefSize(500, 400);
