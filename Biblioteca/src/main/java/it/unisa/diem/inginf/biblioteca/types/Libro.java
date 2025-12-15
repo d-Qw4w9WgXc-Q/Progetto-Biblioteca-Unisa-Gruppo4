@@ -9,13 +9,13 @@ public class Libro {
     private String ISBN;
     private Collection<String> autori;
     private int nCopie;
-    private int annoPublicazione;
+    private int annoPubblicazione;
 
     public Libro(String titolo, String ISBN, Collection<String> autori, int nCopie, int annoPublicazione) {
         this.titolo = titolo;
         this.ISBN = ISBN;
         this.nCopie = nCopie;
-        this.annoPublicazione = annoPublicazione;
+        this.annoPubblicazione = annoPublicazione;
         
         this.autori = new ArrayList<>(autori);
     }
@@ -52,17 +52,17 @@ public class Libro {
         this.nCopie = nCopie;
     }
 
-    public int getAnnoPublicazione() {
-        return annoPublicazione;
+    public int getAnnoPubblicazione() {
+        return annoPubblicazione;
     }
 
-    public void setAnnoPublicazione(int annoPublicazione) {
-        this.annoPublicazione = annoPublicazione;
+    public void setAnnoPubblicazione(int annoPubblicazione) {
+        this.annoPubblicazione = annoPubblicazione;
     }
     
     @Override
     public String toString() {
-        String ret = String.format("Titolo: %s, ISBN: %s, Numero copie: %d, Anno publicazione: %d, Autori:\n", titolo, ISBN, nCopie, annoPublicazione);
+        String ret = String.format("Titolo: %s, ISBN: %s, Numero copie: %d, Anno publicazione: %d, Autori:\n", titolo, ISBN, nCopie, annoPubblicazione);
         for(String autore : autori) {
             ret += "- " + autore + "\n";
         }
@@ -77,7 +77,7 @@ public class Libro {
         hash = 89 * hash + Objects.hashCode(this.ISBN);
         hash = 89 * hash + Objects.hashCode(this.autori);
         hash = 89 * hash + this.nCopie;
-        hash = 89 * hash + this.annoPublicazione;
+        hash = 89 * hash + this.annoPubblicazione;
         return hash;
     }
 
@@ -96,7 +96,7 @@ public class Libro {
         if (this.nCopie != other.nCopie) {
             return false;
         }
-        if (this.annoPublicazione != other.annoPublicazione) {
+        if (this.annoPubblicazione != other.annoPubblicazione) {
             return false;
         }
         if (!Objects.equals(this.titolo, other.titolo)) {

@@ -106,7 +106,7 @@ public class LibroTest {
     @Test
     public void testGetAnnoPublicazione() {
         int annoPubblicazioneAtteso = 2020;
-        assertEquals(annoPubblicazioneAtteso, libro.getAnnoPublicazione());
+        assertEquals(annoPubblicazioneAtteso, libro.getAnnoPubblicazione());
     }
 
     /**
@@ -115,8 +115,8 @@ public class LibroTest {
     @Test
     public void testSetAnnoPublicazione() {
         int annoPubblicazioneAtteso = 1234;
-        libro.setAnnoPublicazione(annoPubblicazioneAtteso);
-        assertEquals(annoPubblicazioneAtteso, libro.getAnnoPublicazione());
+        libro.setAnnoPubblicazione(annoPubblicazioneAtteso);
+        assertEquals(annoPubblicazioneAtteso, libro.getAnnoPubblicazione());
     }
 
     /**
