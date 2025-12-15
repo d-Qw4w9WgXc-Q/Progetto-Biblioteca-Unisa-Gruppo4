@@ -153,7 +153,7 @@ public class LibroTest {
         System.out.println("getAnnoPublicazione");
         Libro instance = null;
         int expResult = 0;
-        int result = instance.getAnnoPublicazione();
+        int result = instance.getAnnoPubblicazione();
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
@@ -167,7 +167,7 @@ public class LibroTest {
         System.out.println("setAnnoPublicazione");
         int annoPublicazione = 0;
         Libro instance = null;
-        instance.setAnnoPublicazione(annoPublicazione);
+        instance.setAnnoPubblicazione(annoPublicazione);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
