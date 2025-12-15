@@ -1,9 +1,8 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/UnitTests/JUnit5TestClass.java to edit this template
- */
 package it.unisa.diem.inginf.biblioteca;
 
+import it.unisa.diem.inginf.biblioteca.types.Comparators.CompUtenteCognome;
+import it.unisa.diem.inginf.biblioteca.types.Comparators.CompUtenteMatricola;
+import it.unisa.diem.inginf.biblioteca.types.Comparators.CompUtenteNome;
 import it.unisa.diem.inginf.biblioteca.types.Libro;
 import it.unisa.diem.inginf.biblioteca.types.Prestito;
 import it.unisa.diem.inginf.biblioteca.types.Utente;
@@ -15,18 +14,21 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.TestInstance;
 
 /**
  *
  * @author nebbi
  */
+
+@TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class BibliotecaTest {
     
-    public BibliotecaTest() {
-    }
+    public Biblioteca biblioteca;
     
     @BeforeAll
-    public static void setUpClass() {
+    public void setUpClass() {
+        biblioteca = new Biblioteca();
     }
     
     @AfterAll
@@ -46,30 +48,39 @@ public class BibliotecaTest {
      */
     @Test
     public void testRegistraUtente() {
-        System.out.println("registraUtente");
-        Utente e = null;
-        Biblioteca instance = new Biblioteca();
-        boolean expResult = false;
-        boolean result = instance.registraUtente(e);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        Utente utenteAtteso = new Utente("Vincenzo", "Natale", "0612709907", "v.natale10@studenti.unisa.it");
+        biblioteca.registraUtente(utenteAtteso);
+        assertTrue(biblioteca.utenti.contains(utenteAtteso));
     }
 
     /**
      * Test of cercaUtente method, of class Biblioteca.
      */
     @Test
-    public void testCercaUtente() {
-        System.out.println("cercaUtente");
-        Utente e = null;
-        Comparator<Utente> c = null;
-        Biblioteca instance = new Biblioteca();
-        Utente expResult = null;
-        Utente result = instance.cercaUtente(e, c);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+
+    public void testCercaUtentePerNome() {
+        Utente utenteAtteso = new Utente("Vincenzo", "Natale", "0612709907", "v.natale10@studenti.unisa.it");
+        biblioteca.registraUtente(utenteAtteso);
+        CompUtenteNome c = new CompUtenteNome();
+        assertEquals(utenteAtteso , biblioteca.cercaUtente(utenteAtteso, c));
+    }
+    
+    @Test
+
+    public void testCercaUtentePerCognome() {
+        Utente utenteAtteso = new Utente("Vincenzo", "Natale", "0612709907", "v.natale10@studenti.unisa.it");
+        biblioteca.registraUtente(utenteAtteso);
+        CompUtenteCognome c = new CompUtenteCognome();
+        assertEquals(utenteAtteso , biblioteca.cercaUtente(utenteAtteso, c));
+    }
+    
+        @Test
+
+    public void testCercaUtentePerMatricola() {
+        Utente utenteAtteso = new Utente("Vincenzo", "Natale", "0612709907", "v.natale10@studenti.unisa.it");
+        biblioteca.registraUtente(utenteAtteso);
+        CompUtenteMatricola c = new CompUtenteMatricola();
+        assertEquals(utenteAtteso , biblioteca.cercaUtente(utenteAtteso, c));
     }
 
     /**
