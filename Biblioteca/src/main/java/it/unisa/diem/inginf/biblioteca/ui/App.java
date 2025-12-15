@@ -7,11 +7,9 @@ import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
-import javafx.scene.Node;
 import javafx.event.*;
 import javafx.beans.binding.*;
 import javafx.beans.property.*;
-import javafx.collections.FXCollections;
 
 
 public class App extends Application {
@@ -25,17 +23,17 @@ public class App extends Application {
         mode.getItems().addAll("Utenti", "Libri", "Prestiti");
         mode.setValue("Utenti");
         
-        ListView l_utenti = new ListView(biblioteca.getUtenti());
-        ListView l_libri = new ListView(biblioteca.getLibri());
-        ListView l_prestiti = new ListView(biblioteca.getPrestiti());
+        ListView utenti = new ListView(biblioteca.getUtenti());
+        ListView libri = new ListView(biblioteca.getLibri());
+        ListView prestiti = new ListView(biblioteca.getPrestiti());
         
-        l_utenti.setPrefSize(500, 400);
-        l_libri.setPrefSize(500, 400);
-        l_prestiti.setPrefSize(500, 400);
-
+        utenti.setPrefSize(1000, 400);
+        libri.setPrefSize(1000, 400);
+        prestiti.setPrefSize(1000, 400);
+        
         
         ScrollPane scrollpane = new ScrollPane();
-        scrollpane.setPrefSize(500, 400);
+        scrollpane.setPrefSize(700, 400);
         
         
         scrollpane.contentProperty().bind(new ObjectBinding() {
@@ -43,15 +41,40 @@ public class App extends Application {
             protected Object computeValue() {
                 Property p = mode.valueProperty();
                 bind(p);
-                if(p.getValue() == "Utenti") return l_utenti;
-                else if(p.getValue() == "Libri") return l_libri;
-                else if(p.getValue() == "Prestiti") return l_prestiti;
+                if(p.getValue() == "Utenti") return utenti;
+                else if(p.getValue() == "Libri") return libri;
+                else if(p.getValue() == "Prestiti") return prestiti;
                 throw new RuntimeException("Invalid choice");
             }
         });
         
         Button add = new Button("+");
         Button remove = new Button("-");
+        
+        AddMenu addmenu = new AddMenu(biblioteca, mode.valueProperty());
+        
+        add.setOnAction((ActionEvent ev) -> {
+            addmenu.show();
+        });
+        
+        remove.setOnAction((ActionEvent ev) -> {
+            String selection = (String)mode.getValue();
+            switch(selection) {
+                case "Utenti":
+                    biblioteca.eliminaUtente((Utente)utenti.getSelectionModel().getSelectedItem());
+                    break;
+                case "Libri":
+                    biblioteca.eliminaLibro((Libro)libri.getSelectionModel().getSelectedItem());
+                    break;
+                case "Prestiti":
+                    biblioteca.eliminaPrestito((Prestito)prestiti.getSelectionModel().getSelectedItem());
+                    break;
+            }
+        });
+        
+        
+        biblioteca.registraUtente(new Utente("Vincenzo", "Natale", "0612709907", "v.natale10@studenti.unisa.it"));
+        biblioteca.registraUtente(new Utente("Matteo", "Nebbia", "0612709400", "m.nebbia@studenti.unisa.it"));
         
         add.setPrefSize(40, 40);
         remove.setPrefSize(40, 40);
@@ -62,7 +85,7 @@ public class App extends Application {
         grid.add(mode, 0, 1);
         grid.add(scrollpane, 0, 2);
         grid.add(controls, 0, 3);
-        Scene scene = new Scene(grid, 500, 500);
+        Scene scene = new Scene(grid, 700, 500);
         stage.setScene(scene);
         stage.show();
     }
