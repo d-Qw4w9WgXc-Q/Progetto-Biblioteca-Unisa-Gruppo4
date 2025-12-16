@@ -312,14 +312,10 @@ public class BibliotecaTest {
      */
     @Test
     public void testEliminaPrestito_Prestito() {
-        System.out.println("eliminaPrestito");
-        Prestito e = null;
-        Biblioteca instance = new Biblioteca();
-        boolean expResult = false;
-        boolean result = instance.eliminaPrestito(e);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        biblioteca.registraPrestito(prestitoAttesoA);
+        biblioteca.registraPrestito(prestitoAttesoB);
+        biblioteca.eliminaPrestito(prestitoAttesoA);
+        assertFalse(biblioteca.prestiti.contains(prestitoAttesoA));
     }
 
     /**
@@ -327,15 +323,11 @@ public class BibliotecaTest {
      */
     @Test
     public void testEliminaPrestito_Prestito_Comparator() {
-        System.out.println("eliminaPrestito");
-        Prestito e = null;
-        Comparator<Prestito> c = null;
-        Biblioteca instance = new Biblioteca();
-        boolean expResult = false;
-        boolean result = instance.eliminaPrestito(e, c);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        biblioteca.registraPrestito(prestitoAttesoA);
+        biblioteca.registraPrestito(prestitoAttesoB);
+        CompPrestitoDataPrestito c = new CompPrestitoDataPrestito();
+        biblioteca.eliminaPrestito(prestitoAttesoA, c);
+        assertFalse(biblioteca.prestiti.contains(prestitoAttesoA));
     }
 
     /**
@@ -343,38 +335,6 @@ public class BibliotecaTest {
      */
     @Test
     public void testGetPrestiti() {
-        System.out.println("getPrestiti");
-        Biblioteca instance = new Biblioteca();
-        ObservableList<Prestito> expResult = null;
-        ObservableList<Prestito> result = instance.getPrestiti();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        assertIterableEquals(biblioteca.prestiti, biblioteca.getPrestiti());
     }
-
-    /**
-     * Test of ordinaPrestiti method, of class Biblioteca.
-     */
-    @Test
-    public void testOrdinaPrestiti() {
-        System.out.println("ordinaPrestiti");
-        Comparator<Prestito> c = null;
-        Biblioteca instance = new Biblioteca();
-        instance.ordinaPrestiti(c);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of main method, of class Biblioteca.
-     */
-    @Test
-    public void testMain() {
-        System.out.println("main");
-        String[] args = null;
-        Biblioteca.main(args);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-    
 }
