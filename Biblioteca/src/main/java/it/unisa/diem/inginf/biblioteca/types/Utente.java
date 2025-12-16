@@ -1,6 +1,8 @@
 package it.unisa.diem.inginf.biblioteca.types;
 
 import java.util.Objects;
+import java.util.Collection;
+import java.util.ArrayList;
 
 
 public class Utente {
@@ -8,12 +10,14 @@ public class Utente {
     private String cognome;
     private String matricola;
     private String email;
+    private Collection<Libro> libri;
 
     public Utente(String nome, String cognome, String matricola, String email) {
         this.nome = nome;
         this.cognome = cognome;
         this.matricola = matricola;
         this.email = email;
+        libri = new ArrayList();
     }
     
     public String getNome() {

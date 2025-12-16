@@ -19,6 +19,7 @@ public class EditMenu {
     private ObjectProperty<String> type;
     
     private MenuUtente menuUtente;
+    private MenuLibro menuLibro;
     
     
     public EditMenu(Biblioteca b, ObjectProperty<String> type) {
@@ -26,6 +27,7 @@ public class EditMenu {
         this.type = type;
         
         menuUtente = new MenuUtente(b);
+        menuLibro = new MenuLibro(b);
 
     }
     
@@ -36,7 +38,7 @@ public class EditMenu {
                 menuUtente.show((Utente)ob);
                 break;
             case "Libri":
-                // menuLibri.show((Libro)ob);
+                menuLibro.show((Libro)ob);
                 break;
             case "Prestiti":
                 // menuPrestiti.show((Prestito)ob);
