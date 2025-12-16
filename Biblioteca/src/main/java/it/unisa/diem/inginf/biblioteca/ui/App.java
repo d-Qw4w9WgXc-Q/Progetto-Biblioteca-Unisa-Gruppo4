@@ -50,11 +50,20 @@ public class App extends Application {
         
         Button add = new Button("+");
         Button remove = new Button("-");
+        Button modify = new Button("*");
         
-        AddMenu addmenu = new AddMenu(biblioteca, mode.valueProperty());
+        add.setPrefSize(40, 40);
+        remove.setPrefSize(40, 40);
+        modify.setPrefSize(40, 40);
+        
+        EditMenu editMenu = new EditMenu(biblioteca, mode.valueProperty());
         
         add.setOnAction((ActionEvent ev) -> {
-            addmenu.show();
+            editMenu.show(null);
+        });
+        
+        modify.setOnAction((ActionEvent ev) -> {
+            editMenu.show(((ListView)scrollpane.getContent()).getSelectionModel().getSelectedItem());
         });
         
         remove.setOnAction((ActionEvent ev) -> {
@@ -76,10 +85,9 @@ public class App extends Application {
         biblioteca.registraUtente(new Utente("Vincenzo", "Natale", "0612709907", "v.natale10@studenti.unisa.it"));
         biblioteca.registraUtente(new Utente("Matteo", "Nebbia", "0612709400", "m.nebbia@studenti.unisa.it"));
         
-        add.setPrefSize(40, 40);
-        remove.setPrefSize(40, 40);
+
         
-        HBox controls = new HBox(add, remove);
+        HBox controls = new HBox(add, modify, remove);
         
         GridPane grid = new GridPane();
         grid.add(mode, 0, 1);
