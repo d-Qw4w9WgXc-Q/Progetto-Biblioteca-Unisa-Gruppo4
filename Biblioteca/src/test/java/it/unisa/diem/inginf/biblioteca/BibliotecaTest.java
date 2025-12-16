@@ -1,11 +1,9 @@
 package it.unisa.diem.inginf.biblioteca;
 
-import it.unisa.diem.inginf.biblioteca.types.Comparators.CompUtenteCognome;
-import it.unisa.diem.inginf.biblioteca.types.Comparators.CompUtenteMatricola;
-import it.unisa.diem.inginf.biblioteca.types.Comparators.CompUtenteNome;
-import it.unisa.diem.inginf.biblioteca.types.Libro;
-import it.unisa.diem.inginf.biblioteca.types.Prestito;
-import it.unisa.diem.inginf.biblioteca.types.Utente;
+import it.unisa.diem.inginf.biblioteca.types.*;
+import it.unisa.diem.inginf.biblioteca.types.Comparators.*;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Comparator;
 import javafx.collections.ObservableList;
 import org.junit.jupiter.api.AfterEach;
@@ -25,10 +23,17 @@ import org.junit.jupiter.api.TestInstance;
 public class BibliotecaTest {
     
     public Biblioteca biblioteca;
+    public Utente utenteAttesoA = new Utente("Vincenzo", "Natale", "0612709907", "v.natale10@studenti.unisa.it");
+    public Utente utenteAttesoB = new Utente("Matteo", "Nebbia", "0612709400", "m.nebbia@studenti.unisa.it");
+    
+    String[] autoriA = {"J.R.R. Tolkien", "Alan Lee", "Ottavio Fatica"};
+    public Libro libroAttesoA = new Libro("Il Signore Degli Anelli", "978-88-301-0471-6", Arrays.asList(autoriA), 7, 2020);
+    String[] autoriB = {"Mark Twain"};
+    public Libro libroAttesoB = new Libro("Le Avventure Di Tom Sawyer", "978-88-046-1838", Arrays.asList(autoriB), 2, 2012);
     
     @BeforeAll
     public void setUpClass() {
-        biblioteca = new Biblioteca();
+
     }
     
     @AfterAll
@@ -37,6 +42,7 @@ public class BibliotecaTest {
     
     @BeforeEach
     public void setUp() {
+        biblioteca = new Biblioteca();
     }
     
     @AfterEach
@@ -48,9 +54,8 @@ public class BibliotecaTest {
      */
     @Test
     public void testRegistraUtente() {
-        Utente utenteAtteso = new Utente("Vincenzo", "Natale", "0612709907", "v.natale10@studenti.unisa.it");
-        biblioteca.registraUtente(utenteAtteso);
-        assertTrue(biblioteca.utenti.contains(utenteAtteso));
+        biblioteca.registraUtente(utenteAttesoA);
+        assertTrue(biblioteca.utenti.contains(utenteAttesoA));
     }
 
     /**
@@ -59,55 +64,60 @@ public class BibliotecaTest {
     @Test
 
     public void testCercaUtentePerNome() {
-        Utente utenteAtteso = new Utente("Vincenzo", "Natale", "0612709907", "v.natale10@studenti.unisa.it");
-        biblioteca.registraUtente(utenteAtteso);
+        biblioteca.registraUtente(utenteAttesoA);
         CompUtenteNome c = new CompUtenteNome();
-        assertEquals(utenteAtteso , biblioteca.cercaUtente(utenteAtteso, c));
+        assertEquals(utenteAttesoA , biblioteca.cercaUtente(utenteAttesoA, c));
     }
     
     @Test
 
     public void testCercaUtentePerCognome() {
-        Utente utenteAtteso = new Utente("Vincenzo", "Natale", "0612709907", "v.natale10@studenti.unisa.it");
-        biblioteca.registraUtente(utenteAtteso);
+        biblioteca.registraUtente(utenteAttesoA);
         CompUtenteCognome c = new CompUtenteCognome();
-        assertEquals(utenteAtteso , biblioteca.cercaUtente(utenteAtteso, c));
+        assertEquals(utenteAttesoA , biblioteca.cercaUtente(utenteAttesoA, c));
     }
     
-        @Test
+    @Test
 
     public void testCercaUtentePerMatricola() {
-        Utente utenteAtteso = new Utente("Vincenzo", "Natale", "0612709907", "v.natale10@studenti.unisa.it");
-        biblioteca.registraUtente(utenteAtteso);
+        biblioteca.registraUtente(utenteAttesoA);
         CompUtenteMatricola c = new CompUtenteMatricola();
-        assertEquals(utenteAtteso , biblioteca.cercaUtente(utenteAtteso, c));
+        assertEquals(utenteAttesoA , biblioteca.cercaUtente(utenteAttesoA, c));
     }
 
+    @Test
+
+    public void testCercaUtentePerNomeFallito() {
+        CompUtenteNome c = new CompUtenteNome();
+        assertNull(biblioteca.cercaUtente(utenteAttesoA, c));
+    }
+    
+    @Test
+
+    public void testCercaUtentePerCognomeFallito() {
+        CompUtenteCognome c = new CompUtenteCognome();
+        assertNull(biblioteca.cercaUtente(utenteAttesoA, c));
+    }
+    
+    @Test
+
+    public void testCercaUtentePerMatricolaFallito() {
+        CompUtenteMatricola c = new CompUtenteMatricola();
+        assertNull(biblioteca.cercaUtente(utenteAttesoA, c));
+    }
+    
+    
     /**
      * Test of getUtenti method, of class Biblioteca.
      */
     @Test
     public void testGetUtenti() {
-        System.out.println("getUtenti");
-        Biblioteca instance = new Biblioteca();
-        ObservableList<Utente> expResult = null;
-        ObservableList<Utente> result = instance.getUtenti();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of ordinaUtenti method, of class Biblioteca.
-     */
-    @Test
-    public void testOrdinaUtenti() {
-        System.out.println("ordinaUtenti");
-        Comparator<Utente> c = null;
-        Biblioteca instance = new Biblioteca();
-        instance.ordinaUtenti(c);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        biblioteca.registraUtente(utenteAttesoA);
+        biblioteca.registraUtente(utenteAttesoB);
+        ArrayList<Utente> listaUtentiAttesa = new ArrayList<>();
+        listaUtentiAttesa.add(utenteAttesoA);
+        listaUtentiAttesa.add(utenteAttesoB);
+        assertIterableEquals(listaUtentiAttesa, biblioteca.getUtenti());
     }
 
     /**
@@ -115,30 +125,47 @@ public class BibliotecaTest {
      */
     @Test
     public void testEliminaUtente_Utente() {
-        System.out.println("eliminaUtente");
-        Utente e = null;
-        Biblioteca instance = new Biblioteca();
-        boolean expResult = false;
-        boolean result = instance.eliminaUtente(e);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        biblioteca.registraUtente(utenteAttesoA);
+        biblioteca.registraUtente(utenteAttesoB);
+        biblioteca.eliminaUtente(utenteAttesoA);
+        CompUtenteNome c = new CompUtenteNome();
+        assertNull(biblioteca.cercaUtente(utenteAttesoA, c));
     }
 
     /**
      * Test of eliminaUtente method, of class Biblioteca.
      */
     @Test
-    public void testEliminaUtente_Utente_Comparator() {
-        System.out.println("eliminaUtente");
-        Utente e = null;
-        Comparator<Utente> c = null;
-        Biblioteca instance = new Biblioteca();
-        boolean expResult = false;
-        boolean result = instance.eliminaUtente(e, c);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+    public void testEliminaUtentePerNome() {
+        CompUtenteNome c = new CompUtenteNome();
+        biblioteca.registraUtente(utenteAttesoA);
+        biblioteca.registraUtente(utenteAttesoB);
+        biblioteca.eliminaUtente(utenteAttesoA, c);
+        assertNull(biblioteca.cercaUtente(utenteAttesoA, c));
+    }
+    
+    /**
+     * Test of eliminaUtente method, of class Biblioteca.
+     */
+    @Test
+    public void testEliminaUtentePerCognome() {
+        CompUtenteCognome c = new CompUtenteCognome();
+        biblioteca.registraUtente(utenteAttesoA);
+        biblioteca.registraUtente(utenteAttesoB);
+        biblioteca.eliminaUtente(utenteAttesoA, c);
+        assertNull(biblioteca.cercaUtente(utenteAttesoA, c));
+    }
+    
+    /**
+     * Test of eliminaUtente method, of class Biblioteca.
+     */
+    @Test
+    public void testEliminaUtentePerMatricola() {
+        CompUtenteMatricola c = new CompUtenteMatricola();
+        biblioteca.registraUtente(utenteAttesoA);
+        biblioteca.registraUtente(utenteAttesoB);
+        biblioteca.eliminaUtente(utenteAttesoA, c);
+        assertNull(biblioteca.cercaUtente(utenteAttesoA, c));
     }
 
     /**
@@ -146,30 +173,50 @@ public class BibliotecaTest {
      */
     @Test
     public void testRegistraLibro() {
-        System.out.println("registraLibro");
-        Libro e = null;
-        Biblioteca instance = new Biblioteca();
-        boolean expResult = false;
-        boolean result = instance.registraLibro(e);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        biblioteca.registraLibro(libroAttesoA);
+        assertTrue(biblioteca.libri.contains(libroAttesoA));
     }
 
     /**
      * Test of cercaLibro method, of class Biblioteca.
      */
     @Test
-    public void testCercaLibro() {
-        System.out.println("cercaLibro");
-        Libro e = null;
-        Comparator<Libro> c = null;
-        Biblioteca instance = new Biblioteca();
-        Libro expResult = null;
-        Libro result = instance.cercaLibro(e, c);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+    public void testCercaLibroPerTitolo() {
+        biblioteca.registraLibro(libroAttesoA);
+        CompLibroTitolo c = new CompLibroTitolo();
+        assertEquals(libroAttesoA, biblioteca.cercaLibro(libroAttesoA, c));
+    }
+    
+    @Test
+    public void testCercaLibroPerISBN() {
+        biblioteca.registraLibro(libroAttesoA);
+        CompLibroISBN c = new CompLibroISBN();
+        assertEquals(libroAttesoA, biblioteca.cercaLibro(libroAttesoA, c));
+    }
+    
+    @Test
+    public void testCercaLibroPerAutori() {
+        biblioteca.registraLibro(libroAttesoA);
+        CompLibroAutori c = new CompLibroAutori();
+        assertEquals(libroAttesoA, biblioteca.cercaLibro(libroAttesoA, c));
+    }
+    
+    @Test
+    public void testCercaLibroPerTitoloFallito() {
+        CompLibroTitolo c = new CompLibroTitolo();
+        assertNull(biblioteca.cercaLibro(libroAttesoA, c));
+    }
+    
+    @Test
+    public void testCercaLibroPerISBNFallito() {
+        CompLibroISBN c = new CompLibroISBN();
+        assertNull(biblioteca.cercaLibro(libroAttesoA, c));
+    }
+    
+    @Test
+    public void testCercaLibroPerAutoriFallito() {
+        CompLibroAutori c = new CompLibroAutori();
+        assertNull(biblioteca.cercaLibro(libroAttesoA, c));
     }
 
     /**
@@ -177,26 +224,12 @@ public class BibliotecaTest {
      */
     @Test
     public void testGetLibri() {
-        System.out.println("getLibri");
-        Biblioteca instance = new Biblioteca();
-        ObservableList<Libro> expResult = null;
-        ObservableList<Libro> result = instance.getLibri();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of ordinaLibri method, of class Biblioteca.
-     */
-    @Test
-    public void testOrdinaLibri() {
-        System.out.println("ordinaLibri");
-        Comparator<Libro> c = null;
-        Biblioteca instance = new Biblioteca();
-        instance.ordinaLibri(c);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        biblioteca.registraLibro(libroAttesoA);
+        biblioteca.registraLibro(libroAttesoB);
+        ArrayList<Libro> listaLibriAttesa = new ArrayList<>();
+        listaLibriAttesa.add(libroAttesoA);
+        listaLibriAttesa.add(libroAttesoB);
+        assertIterableEquals(listaLibriAttesa, biblioteca.getLibri());
     }
 
     /**
@@ -204,14 +237,11 @@ public class BibliotecaTest {
      */
     @Test
     public void testEliminaLibro_Libro() {
-        System.out.println("eliminaLibro");
-        Libro e = null;
-        Biblioteca instance = new Biblioteca();
-        boolean expResult = false;
-        boolean result = instance.eliminaLibro(e);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        biblioteca.registraLibro(libroAttesoA);
+        biblioteca.registraLibro(libroAttesoB);
+        biblioteca.eliminaLibro(libroAttesoA);
+        CompLibroTitolo c = new CompLibroTitolo();
+        assertNull(biblioteca.cercaLibro(libroAttesoA, c));
     }
 
     /**
