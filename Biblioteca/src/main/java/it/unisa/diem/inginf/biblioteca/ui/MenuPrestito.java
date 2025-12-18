@@ -66,12 +66,8 @@ public class MenuPrestito implements Menu<Prestito> {
 
     @Override
     public void show(Prestito ob) {
-        if(ob == null) {
-            show();
-            return;
-        }
-        
-        stage.show();
+        // I prestiti non vanno modificati
+        show();
     }
 
     @Override
