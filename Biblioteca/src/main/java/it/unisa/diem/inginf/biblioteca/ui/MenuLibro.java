@@ -11,6 +11,9 @@ import javafx.scene.Scene;
 import javafx.event.*;
 
 
+/**
+ * Finestra JavaFX per creare o modificare un {@link it.unisa.diem.inginf.biblioteca.types.Libro}.
+ */
 public class MenuLibro implements Menu<Libro> {
     
     private Stage stage;
@@ -26,6 +29,10 @@ public class MenuLibro implements Menu<Libro> {
     private Biblioteca biblioteca;
     
     
+    /**
+     * Crea il menu per inserimento/modifica libri.
+     * @param biblioteca biblioteca di riferimento
+     */
     public MenuLibro(Biblioteca biblioteca) {
         this.biblioteca = biblioteca;
         
@@ -80,6 +87,10 @@ public class MenuLibro implements Menu<Libro> {
     }
     
     // Modifica Libro
+    /**
+     * Mostra la finestra in modalità modifica.
+     * @param l libro da modificare (se {@code null} apre la modalità creazione)
+     */
     @Override
     public void show(Libro l) {
         if(l == null) {
@@ -106,6 +117,9 @@ public class MenuLibro implements Menu<Libro> {
     }
     
     // Aggiungi nuovo libro
+    /**
+     * Mostra la finestra in modalità creazione di un nuovo libro.
+     */
     @Override
     public void show() {
         tTitolo.setText(null);

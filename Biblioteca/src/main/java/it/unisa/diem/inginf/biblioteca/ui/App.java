@@ -12,7 +12,14 @@ import javafx.event.*;
 import javafx.beans.binding.*;
 
 
+/**
+ * Applicazione JavaFX della biblioteca: mostra liste (utenti, libri, prestiti) e consente aggiunta/modifica/rimozione.
+ */
 public class App extends Application {
+    /**
+     * Entry point JavaFX: costruisce UI e connette i controlli alle liste osservabili della biblioteca.
+     * @param stage primary stage
+     */
     @Override
     public void start(Stage stage) {
         

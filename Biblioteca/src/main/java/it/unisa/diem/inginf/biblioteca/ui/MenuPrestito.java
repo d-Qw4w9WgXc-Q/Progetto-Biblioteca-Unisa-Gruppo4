@@ -12,6 +12,9 @@ import javafx.scene.Scene;
 import javafx.event.*;
 
 
+/**
+ * Finestra JavaFX per creare un {@link it.unisa.diem.inginf.biblioteca.types.Prestito}.
+ */
 public class MenuPrestito implements Menu<Prestito> {
     
     private Stage stage;
@@ -25,6 +28,10 @@ public class MenuPrestito implements Menu<Prestito> {
     
     Biblioteca biblioteca;
     
+    /**
+     * Crea il menu per inserimento prestiti.
+     * @param b biblioteca di riferimento
+     */
     public MenuPrestito(Biblioteca b) {
         GridPane gridPrestiti = new GridPane();
         gridPrestiti.setVgap(13);
@@ -62,6 +69,10 @@ public class MenuPrestito implements Menu<Prestito> {
         gridPrestiti.add(controlli, 0, 2);
     }
 
+    /**
+     * Mostra la finestra (attualmente delega alla creazione se {@code ob} è nullo).
+     * @param ob prestito selezionato (non gestito in modifica)
+     */
     @Override
     public void show(Prestito ob) {
         if(ob == null) {
@@ -72,6 +83,9 @@ public class MenuPrestito implements Menu<Prestito> {
         stage.show();
     }
 
+    /**
+     * Mostra la finestra in modalità creazione del prestito e registra il prestito alla conferma.
+     */
     @Override
     public void show() {
         ok.setOnAction((ActionEvent ev) -> {

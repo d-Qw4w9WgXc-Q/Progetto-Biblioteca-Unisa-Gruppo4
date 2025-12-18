@@ -17,32 +17,47 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
- *
+ * Test JUnit generati per {@link it.unisa.diem.inginf.biblioteca.Biblioteca}.
  * @author nebbi
  */
 public class BibliotecaTest {
     
+    /**
+     * Costruttore di default del test.
+     */
     public BibliotecaTest() {
     }
     
+    /**
+     * Setup eseguito una volta prima della classe di test.
+     */
     @BeforeAll
     public static void setUpClass() {
     }
     
+    /**
+     * Teardown eseguito una volta dopo la classe di test.
+     */
     @AfterAll
     public static void tearDownClass() {
     }
     
+    /**
+     * Setup eseguito prima di ogni test.
+     */
     @BeforeEach
     public void setUp() {
     }
     
+    /**
+     * Teardown eseguito dopo ogni test.
+     */
     @AfterEach
     public void tearDown() {
     }
 
     /**
-     * Test of registraUtente method, of class Biblioteca.
+     * Verifica il comportamento di {@link Biblioteca#registraUtente(it.unisa.diem.inginf.biblioteca.types.Utente)}.
      */
     @Test
     public void testRegistraUtente() {
@@ -57,7 +72,7 @@ public class BibliotecaTest {
     }
 
     /**
-     * Test of cercaUtente method, of class Biblioteca.
+     * Verifica il comportamento di {@link Biblioteca#cercaUtente(it.unisa.diem.inginf.biblioteca.types.Utente, java.util.Comparator)}.
      */
     @Test
     public void testCercaUtente() {
@@ -73,7 +88,7 @@ public class BibliotecaTest {
     }
 
     /**
-     * Test of getUtenti method, of class Biblioteca.
+     * Verifica il comportamento di {@link Biblioteca#getUtenti()}.
      */
     @Test
     public void testGetUtenti() {
@@ -87,7 +102,7 @@ public class BibliotecaTest {
     }
 
     /**
-     * Test of ordinaUtenti method, of class Biblioteca.
+     * Verifica il comportamento di {@link Biblioteca#ordinaUtenti(java.util.Comparator)}.
      */
     @Test
     public void testOrdinaUtenti() {
@@ -100,7 +115,7 @@ public class BibliotecaTest {
     }
 
     /**
-     * Test of eliminaUtente method, of class Biblioteca.
+     * Verifica il comportamento di {@link Biblioteca#eliminaUtente(it.unisa.diem.inginf.biblioteca.types.Utente)}.
      */
     @Test
     public void testEliminaUtente_Utente() {
@@ -115,7 +130,7 @@ public class BibliotecaTest {
     }
 
     /**
-     * Test of eliminaUtente method, of class Biblioteca.
+     * Verifica il comportamento di {@link Biblioteca#eliminaUtente(it.unisa.diem.inginf.biblioteca.types.Utente, java.util.Comparator)}.
      */
     @Test
     public void testEliminaUtente_Utente_Comparator() {
@@ -131,7 +146,7 @@ public class BibliotecaTest {
     }
 
     /**
-     * Test of registraLibro method, of class Biblioteca.
+     * Verifica il comportamento di {@link Biblioteca#registraLibro(it.unisa.diem.inginf.biblioteca.types.Libro)}.
      */
     @Test
     public void testRegistraLibro() {
@@ -146,7 +161,7 @@ public class BibliotecaTest {
     }
 
     /**
-     * Test of cercaLibro method, of class Biblioteca.
+     * Verifica il comportamento di {@link Biblioteca#cercaLibro(it.unisa.diem.inginf.biblioteca.types.Libro, java.util.Comparator)}.
      */
     @Test
     public void testCercaLibro() {
@@ -162,7 +177,7 @@ public class BibliotecaTest {
     }
 
     /**
-     * Test of getLibri method, of class Biblioteca.
+     * Verifica il comportamento di {@link Biblioteca#getLibri()}.
      */
     @Test
     public void testGetLibri() {
@@ -176,7 +191,7 @@ public class BibliotecaTest {
     }
 
     /**
-     * Test of ordinaLibri method, of class Biblioteca.
+     * Verifica il comportamento di {@link Biblioteca#ordinaLibri(java.util.Comparator)}.
      */
     @Test
     public void testOrdinaLibri() {
@@ -189,7 +204,7 @@ public class BibliotecaTest {
     }
 
     /**
-     * Test of eliminaLibro method, of class Biblioteca.
+     * Verifica il comportamento di {@link Biblioteca#eliminaLibro(it.unisa.diem.inginf.biblioteca.types.Libro)}.
      */
     @Test
     public void testEliminaLibro_Libro() {
@@ -204,7 +219,7 @@ public class BibliotecaTest {
     }
 
     /**
-     * Test of eliminaLibro method, of class Biblioteca.
+     * Verifica il comportamento di {@link Biblioteca#eliminaLibro(it.unisa.diem.inginf.biblioteca.types.Libro, java.util.Comparator)}.
      */
     @Test
     public void testEliminaLibro_Libro_Comparator() {
@@ -220,7 +235,7 @@ public class BibliotecaTest {
     }
 
     /**
-     * Test of registraPrestito method, of class Biblioteca.
+     * Verifica il comportamento di {@link Biblioteca#registraPrestito(it.unisa.diem.inginf.biblioteca.types.Prestito)}.
      */
     @Test
     public void testRegistraPrestito() {
@@ -235,7 +250,7 @@ public class BibliotecaTest {
     }
 
     /**
-     * Test of eliminaPrestito method, of class Biblioteca.
+     * Verifica il comportamento di {@link Biblioteca#eliminaPrestito(it.unisa.diem.inginf.biblioteca.types.Prestito)}.
      */
     @Test
     public void testEliminaPrestito_Prestito() {
@@ -250,7 +265,7 @@ public class BibliotecaTest {
     }
 
     /**
-     * Test of eliminaPrestito method, of class Biblioteca.
+     * Verifica il comportamento di {@link Biblioteca#eliminaPrestito(it.unisa.diem.inginf.biblioteca.types.Prestito, java.util.Comparator)}.
      */
     @Test
     public void testEliminaPrestito_Prestito_Comparator() {
@@ -266,7 +281,7 @@ public class BibliotecaTest {
     }
 
     /**
-     * Test of getPrestiti method, of class Biblioteca.
+     * Verifica il comportamento di {@link Biblioteca#getPrestiti()}.
      */
     @Test
     public void testGetPrestiti() {
@@ -280,7 +295,7 @@ public class BibliotecaTest {
     }
 
     /**
-     * Test of ordinaPrestiti method, of class Biblioteca.
+     * Verifica il comportamento di {@link Biblioteca#ordinaPrestiti(java.util.Comparator)}.
      */
     @Test
     public void testOrdinaPrestiti() {
@@ -293,7 +308,7 @@ public class BibliotecaTest {
     }
 
     /**
-     * Test of main method, of class Biblioteca.
+     * Verifica il comportamento del {@link Biblioteca#main(java.lang.String[])}.
      */
     @Test
     public void testMain() {

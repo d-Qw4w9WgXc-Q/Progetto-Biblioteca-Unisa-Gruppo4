@@ -7,6 +7,9 @@ import it.unisa.diem.inginf.biblioteca.types.Utente;
 import javafx.beans.property.ObjectProperty;
 
 
+/**
+ * Dispatcher che apre il menu di edit corretto (utente/libro/prestito) in base alla selezione corrente.
+ */
 public class EditMenu {
     
     private ObjectProperty<String> type;
@@ -16,6 +19,11 @@ public class EditMenu {
     private Menu<Prestito> menuPrestito;
     
     
+    /**
+     * Crea un dispatcher di menu di edit in base al tipo selezionato.
+     * @param b biblioteca di riferimento
+     * @param type property con selezione ("Utenti", "Libri", "Prestiti")
+     */
     public EditMenu(Biblioteca b, ObjectProperty<String> type) {
         this.type = type;
         
@@ -25,6 +33,10 @@ public class EditMenu {
 
     }
     
+    /**
+     * Mostra il menu relativo alla selezione corrente, in modalità modifica se {@code ob} non è nullo.
+     * @param ob oggetto selezionato (utente/libro/prestito) oppure {@code null} per creazione
+     */
     public void show(Object ob) {
         String selection = type.getValue();
         switch(selection) {
