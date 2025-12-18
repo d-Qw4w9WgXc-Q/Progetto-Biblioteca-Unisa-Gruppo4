@@ -9,15 +9,7 @@ package "Gestione Utenti" {
     usecase "ModificaUtente" as UC2
     usecase "EliminaUtente" as UC3
     usecase "MostraElencoUtenti" as UC4
-
     usecase "CercaUtenti" as UC5
-    usecase "Ricerca per Cognome" as UC5a
-    usecase "Ricerca per Matricola" as UC5b
-    usecase "Nessun Utente Trovato" as UC5c
-
-    UC5 --> UC5a : <<include>>
-    UC5 --> UC5b : <<include>>
-    UC5 --> UC5c : <<extend>>
 }
 
 package "Gestione Libri" {
@@ -26,17 +18,7 @@ package "Gestione Libri" {
     usecase "ModificaLibro" as UC7
     usecase "EliminaLibro" as UC8
     usecase "MostraElencoLibri" as UC9
-
     usecase "CercaLibri" as UC10
-    usecase "Ricerca per Titolo" as UC10a
-    usecase "Ricerca per Autore" as UC10b
-    usecase "Ricerca per ISBN" as UC10c
-    usecase "Nessun Libro Trovato" as UC10d
-
-    UC10 --> UC10a : <<include>>
-    UC10 --> UC10b : <<include>>
-    UC10 --> UC10c : <<include>>
-    UC10 --> UC10d : <<extend>>
 }
 
 package "Gestione Prestiti" {
@@ -65,9 +47,19 @@ UC4 --> OrdUtenteNome : <<include>>
 UC4 --> OrdUtenteCognome : <<include>>
 UC4 --> OrdUtenteMatricola : <<include>>
 
+UC5 --> OrdUtenteNome : <<include>>
+UC5 --> OrdUtenteCognome : <<include>>
+UC5 --> OrdUtenteMatricola : <<include>>
+
+
 UC9 --> OrdLibroTitolo : <<include>>
 UC9 --> OrdLibroAutori : <<include>>
 UC9 --> OrdLibroISBN : <<include>>
+
+UC10 --> OrdLibroTitolo : <<include>>
+UC10 --> OrdLibroAutori : <<include>>
+UC10 --> OrdLibroISBN : <<include>>
+
 
 UC13 --> OrdPrestitoDataPrestito : <<include>>
 UC13 --> OrdPrestitoDataRestituzione : <<include>>
