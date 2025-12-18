@@ -1,6 +1,8 @@
 package it.unisa.diem.inginf.biblioteca.types;
 
 import java.util.Objects;
+import java.util.Collection;
+import java.util.ArrayList;
 
 
 public class Utente {
@@ -8,12 +10,14 @@ public class Utente {
     private String cognome;
     private String matricola;
     private String email;
+    private Collection<Libro> libri;
 
     public Utente(String nome, String cognome, String matricola, String email) {
         this.nome = nome;
         this.cognome = cognome;
         this.matricola = matricola;
         this.email = email;
+        libri = new ArrayList();
     }
     
     public String getNome() {
@@ -47,10 +51,22 @@ public class Utente {
     public void setEmail(String email) {
         this.email = email;
     }
+
+    public Collection<Libro> getLibri() {
+        return libri;
+    }
+    
+    
     
     @Override
     public String toString() {
-        return String.format("Nome: %s, Cognome: %s, Matricola: %s, Email: %s", nome, cognome, matricola, email);
+        String ret = String.format("Nome: %s, Cognome: %s, Matricola: %s, Email: %s, Libri:\n", nome, cognome, matricola, email);
+        
+        for(Libro l : libri) {
+            ret += "- " + l.getTitolo() + "\n";
+        }
+        
+        return ret;
     }
 
     @Override
