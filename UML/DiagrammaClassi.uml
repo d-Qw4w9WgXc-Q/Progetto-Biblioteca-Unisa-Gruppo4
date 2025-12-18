@@ -3,16 +3,21 @@ class Biblioteca {
     - utenti : Collection<Utente>
     - libri : Collection<Libro>
     - prestiti : Collection<Prestito>
+    + Biblioteca()
     + registraUtente()
     + cercaUtente()
-    + elencoUtenti()
+    + getUtenti()
+    + ordinaUtenti()
     + eliminaUtente()
     + registraLibro()
-    + cercaLibro()
-    + elencoLibri()
+    + getLibri()
+    + ordinaLibri()
     + eliminaLibro()
     + registraPrestito()
     + eliminaPrestito()
+    + getPrestiti()
+    + ordinaPrestiti()
+    + main()
 }
 
 class Utente {
@@ -31,6 +36,7 @@ class Utente {
     + getEmail()
     + getMatricola()
     + toString()
+    + equals()
 }
 
 class Libro {
@@ -50,7 +56,8 @@ class Libro {
     + getAnnoPublicazione()
     + getNCopie()
     + getISBN()
-    + toString() 
+    + toString()
+    + equals()
 }
 
 class Prestito {
@@ -58,9 +65,9 @@ class Prestito {
     - libro : Libro
     - dataPrestito : Date
     - dataRestituzione : Date
+    + Prestito()
     + getUtente()
     + getLibro()
-    + Prestito()
     + getDataPrestito()
     + getDataRestituzione()
     + setDataRestituzione()

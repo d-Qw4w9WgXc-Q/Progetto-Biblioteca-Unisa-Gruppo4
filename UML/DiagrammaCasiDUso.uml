@@ -17,13 +17,9 @@ package "Gestione Utenti" {
 
     UC5 --> UC5a : <<include>>
     UC5 --> UC5b : <<include>>
-
     UC5 --> UC5c : <<extend>>
 }
 
-' ===========================
-'   GESTIONE LIBRI
-' ===========================
 package "Gestione Libri" {
 
     usecase "RegistraLibro" as UC6
@@ -40,7 +36,6 @@ package "Gestione Libri" {
     UC10 --> UC10a : <<include>>
     UC10 --> UC10b : <<include>>
     UC10 --> UC10c : <<include>>
-
     UC10 --> UC10d : <<extend>>
 }
 
@@ -51,7 +46,33 @@ package "Gestione Prestiti" {
     usecase "MostraElencoPrestiti" as UC13
 }
 
+package "Criteri di Ordinamento" {
 
+    usecase "CompLibroAutori" as OrdLibroAutori
+    usecase "CompLibroISBN" as OrdLibroISBN
+    usecase "CompLibroTitolo" as OrdLibroTitolo
+
+    usecase "CompPrestitoDataPrestito" as OrdPrestitoDataPrestito
+    usecase "CompPrestitoDataRestituzione" as OrdPrestitoDataRestituzione
+
+    usecase "CompUtenteNome" as OrdUtenteNome
+    usecase "CompUtenteCognome" as OrdUtenteCognome
+    usecase "CompUtenteMatricola" as OrdUtenteMatricola
+}
+
+' Collegamenti ai criteri di ordinamento
+UC4 --> OrdUtenteNome : <<include>>
+UC4 --> OrdUtenteCognome : <<include>>
+UC4 --> OrdUtenteMatricola : <<include>>
+
+UC9 --> OrdLibroTitolo : <<include>>
+UC9 --> OrdLibroAutori : <<include>>
+UC9 --> OrdLibroISBN : <<include>>
+
+UC13 --> OrdPrestitoDataPrestito : <<include>>
+UC13 --> OrdPrestitoDataRestituzione : <<include>>
+
+' Attore
 Bibliotecario --> UC1
 Bibliotecario --> UC2
 Bibliotecario --> UC3
@@ -67,4 +88,5 @@ Bibliotecario --> UC10
 Bibliotecario --> UC11
 Bibliotecario --> UC12
 Bibliotecario --> UC13
+
 @enduml
