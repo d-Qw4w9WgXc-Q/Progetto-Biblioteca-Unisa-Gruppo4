@@ -1,94 +1,55 @@
 @startuml
 actor Bibliotecario as B
 participant GUI
-participant Controller
 participant Biblioteca
 participant Utente
 participant Libro
 participant Prestito
-participant FileManager
 
 == Registrazione Utente ==
-B -> GUI : Inserisce nome, cognome, matricola, email
-GUI -> Controller : registraUtente(nome, cognome, matricola, email)
-Controller -> Utente : new Utente()
-Utente -> Utente : setNome(nome)\nsetCognome(cognome)\nsetEmail(email)\nsetMatricola(matricola)
-Utente --> Controller : oggetto Utente
-Controller -> Biblioteca : registraUtente(utente)
-Biblioteca -> FileManager : salvaUtenteSuFile(utente)
-FileManager --> Biblioteca : conferma
-Biblioteca --> Controller : utente registrato
-Controller --> GUI : mostraMessaggio("Utente registrato")
-GUI --> B : Conferma registrazione
+B->GUI:Inserisce dati utente
+GUI->Utente:new Utente(dati)
+GUI->Biblioteca:registraUtente(utente)
+GUI->B:Utente registrato
 
 == Registrazione Libro ==
-B -> GUI : Inserisce titolo, autore, anno, copie, ISBN
-GUI -> Controller : registraLibro(titolo, autore, anno, copie, ISBN)
-Controller -> Libro : new Libro()
-Libro -> Libro : setTitolo(titolo)\nsetAutore(autore)\nsetAnnoPubblicazione(anno)\nsetNCopie(copie)\nsetISBN(ISBN)
-Libro --> Controller : oggetto Libro
-Controller -> Biblioteca : registraLibro(libro)
-Biblioteca -> FileManager : salvaLibroSuFile(libro)
-FileManager --> Biblioteca : conferma
-Biblioteca --> Controller : libro registrato
-Controller --> GUI : mostraMessaggio("Libro registrato")
-GUI --> B : Conferma registrazione
+B->GUI:Inserisce dati libro
+GUI->Libro:new Libro(dati)
+GUI->Biblioteca:registraLibro(libro)
+GUI->B:Libro registrato
 
 == Registrazione Prestito ==
-B -> GUI : Seleziona utente e libro
-GUI -> Controller : registraPrestito(matricolaUtente, ISBNLibro)
-Controller -> Biblioteca : cercaUtente(matricolaUtente)
-Biblioteca --> Controller : oggetto Utente
-Controller -> Biblioteca : cercaLibro(ISBNLibro)
-Biblioteca --> Controller : oggetto Libro
-Controller -> Prestito : new Prestito(utente, libro, dataPrestito)
-Prestito --> Controller : oggetto Prestito
-Controller -> Biblioteca : registraPrestito(prestito)
-Biblioteca -> FileManager : salvaPrestitoSuFile(prestito)
-FileManager --> Biblioteca : conferma
-Biblioteca --> Controller : prestito registrato
-Controller --> GUI : mostraMessaggio("Prestito registrato")
-GUI --> B : Conferma prestito
+B->GUI:Seleziona utente e libro
+GUI->Biblioteca:cercaUtente(matricola)
+GUI->Biblioteca:cercaLibro(ISBN)
+GUI->Prestito:new Prestito(utente,libro)
+GUI->Biblioteca:registraPrestito(prestito)
+GUI->B:Prestito registrato
 
 == Restituzione Prestito ==
-B -> GUI : Inserisce ISBN da restituire
-GUI -> Controller : restituisciPrestito(ISBN, matricolaUtente)
-Controller -> Biblioteca : cercaPrestito(ISBN, matricolaUtente)
-Biblioteca --> Controller : oggetto Prestito / null
+B->GUI:Inserisce dati restituzione
+GUI->Biblioteca:cercaPrestito(ISBN,matricola)
 alt prestito trovato
-    Controller -> Prestito : setDataRestituzione(oggi)
-    Controller -> Biblioteca : eliminaPrestito(prestito)
-    Biblioteca -> FileManager : aggiornaPrestitiSuFile()
-    FileManager --> Biblioteca : conferma
-    Biblioteca --> Controller : prestito eliminato
-    Controller --> GUI : mostraMessaggio("Restituzione registrata")
+    GUI->Prestito:setDataRestituzione(oggi)
+    GUI->Biblioteca:eliminaPrestito(prestito)
+    GUI->B:Restituzione registrata
 else prestito non trovato
-    Controller --> GUI : mostraMessaggio("Prestito non trovato")
+    GUI->B:Prestito non trovato
 end
-GUI --> B : Conferma / errore
 
 == Cerca Libro ==
-B -> GUI : Inserisce ISBN da cercare
-GUI -> Controller : cercaLibro(ISBN)
-Controller -> Biblioteca : cercaLibro(ISBN)
-Biblioteca --> Controller : oggetto Libro / null
-Controller --> GUI : mostraLibro(dati)
-GUI --> B : Visualizza dati libro
+B->GUI:Inserisce ISBN
+GUI->Biblioteca:cercaLibro(ISBN)
+GUI->B:Visualizza libro
 
 == Elimina Utente ==
-B -> GUI : Inserisce matricola utente da eliminare
-GUI -> Controller : eliminaUtente(matricola)
-Controller -> Biblioteca : cercaUtente(matricola)
-Biblioteca --> Controller : oggetto Utente / null
+B->GUI:Inserisce matricola
+GUI->Biblioteca:cercaUtente(matricola)
 alt utente trovato
-    Controller -> Biblioteca : eliminaUtente(utente)
-    Biblioteca -> FileManager : aggiornaFileUtenti()
-    FileManager --> Biblioteca : conferma
-    Biblioteca --> Controller : utente eliminato
-    Controller --> GUI : mostraMessaggio("Utente eliminato")
+    GUI->Biblioteca:eliminaUtente(utente)
+    GUI->B:Utente eliminato
 else utente non trovato
-    Controller --> GUI : mostraMessaggio("Utente non trovato")
+    GUI->B:Utente non trovato
 end
-GUI --> B : Conferma eliminazione / errore
 
 @enduml
