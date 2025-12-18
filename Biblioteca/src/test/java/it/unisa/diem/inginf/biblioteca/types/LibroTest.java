@@ -6,7 +6,7 @@ import org.junit.jupiter.api.*;
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
- *
+ * Test JUnit generati per {@link it.unisa.diem.inginf.biblioteca.types.Libro}.
  * @author nebbi
  */
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
@@ -14,19 +14,26 @@ public class LibroTest {
     
     private Libro libro;
     
+    /**
+     * Setup eseguito una volta prima della classe di test.
+     */
     @BeforeEach
     public void setUpClass() {
         String[] autori = {"J.R.R. Tolkien", "Alan Lee", "Ottavio Fatica"};
         libro = new Libro("Il Signore Degli Anelli", "978-88-301-0471-6", Arrays.asList(autori), 7, 2020);
+
     }
     
+    /**
+     * Teardown eseguito una volta dopo la classe di test.
+     */
     @AfterAll
     public static void tearDownClass() {
     }
     
 
     /**
-     * Test of getTitolo method, of class Libro.
+     * Verifica il comportamento di {@link Libro#getTitolo()}.
      */
     @Test
     public void testGetTitolo() {
@@ -35,7 +42,7 @@ public class LibroTest {
     }
 
     /**
-     * Test of setTitolo method, of class Libro.
+     * Verifica il comportamento di {@link Libro#setTitolo(java.lang.String)}.
      */
     @Test
     public void testSetTitolo() {
@@ -45,7 +52,7 @@ public class LibroTest {
     }
 
     /**
-     * Test of getISBN method, of class Libro.
+     * Verifica il comportamento di {@link Libro#getISBN()}.
      */
     @Test
     public void testGetISBN() {
@@ -54,7 +61,7 @@ public class LibroTest {
     }
 
     /**
-     * Test of setISBN method, of class Libro.
+     * Verifica il comportamento di {@link Libro#setISBN(java.lang.String)}.
      */
     @Test
     public void testSetISBN() {
@@ -64,7 +71,7 @@ public class LibroTest {
     }
 
     /**
-     * Test of getAutori method, of class Libro.
+     * Verifica il comportamento di {@link Libro#getAutori()}.
      */
     @Test
     public void testGetAutori() {
@@ -73,7 +80,7 @@ public class LibroTest {
     }
 
     /**
-     * Test of setAutori method, of class Libro.
+     * Verifica il comportamento di {@link Libro#setAutori(java.util.Collection)}.
      */
     @Test
     public void testSetAutori() {
@@ -83,7 +90,7 @@ public class LibroTest {
     }
 
     /**
-     * Test of getnCopie method, of class Libro.
+     * Verifica il comportamento di {@link Libro#getnCopie()}.
      */
     @Test
     public void testGetnCopie() {
@@ -91,7 +98,7 @@ public class LibroTest {
     }
 
     /**
-     * Test of setnCopie method, of class Libro.
+     * Verifica il comportamento di {@link Libro#setnCopie(int)}.
      */
     @Test
     public void testSetnCopie() {
@@ -101,7 +108,7 @@ public class LibroTest {
     }
 
     /**
-     * Test of getAnnoPublicazione method, of class Libro.
+     * Verifica il comportamento di {@link Libro#getAnnoPubblicazione()}.
      */
     @Test
     public void testGetAnnoPublicazione() {
@@ -110,7 +117,7 @@ public class LibroTest {
     }
 
     /**
-     * Test of setAnnoPublicazione method, of class Libro.
+     * Verifica il comportamento di {@link Libro#setAnnoPubblicazione(int)}.
      */
     @Test
     public void testSetAnnoPublicazione() {
@@ -120,7 +127,7 @@ public class LibroTest {
     }
 
     /**
-     * Test of toString method, of class Libro.
+     * Verifica il comportamento di {@link Libro#toString()}.
      */
     @Test
     public void testToString() {

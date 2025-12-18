@@ -5,21 +5,22 @@ import it.unisa.diem.inginf.biblioteca.Biblioteca;
 import it.unisa.diem.inginf.biblioteca.types.*;
 import java.time.ZoneId;
 import java.util.Date;
-import java.util.Arrays;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
-import javafx.scene.Node;
 import javafx.event.*;
 
 
+/**
+ * Finestra JavaFX per creare un {@link it.unisa.diem.inginf.biblioteca.types.Prestito}.
+ */
 public class MenuPrestito implements Menu<Prestito> {
     
     private Stage stage;
     
-    private ListView utenti;
-    private ListView libri;
+    private ListView<Utente> utenti;
+    private ListView<Libro> libri;
     
     private DatePicker data;
     
@@ -27,6 +28,10 @@ public class MenuPrestito implements Menu<Prestito> {
     
     Biblioteca biblioteca;
     
+    /**
+     * Crea il menu per inserimento prestiti.
+     * @param b biblioteca di riferimento
+     */
     public MenuPrestito(Biblioteca b) {
         GridPane gridPrestiti = new GridPane();
         gridPrestiti.setVgap(13);
@@ -40,8 +45,8 @@ public class MenuPrestito implements Menu<Prestito> {
         stage.setScene(scene);
         
         
-        utenti = new ListView(b.getUtenti());
-        libri = new ListView(b.getLibri());
+        utenti = new ListView<>(b.getUtenti());
+        libri = new ListView<>(b.getLibri());
         
         data = new DatePicker();
         
@@ -64,17 +69,24 @@ public class MenuPrestito implements Menu<Prestito> {
         gridPrestiti.add(controlli, 0, 2);
     }
 
+    /**
+     * Mostra la finestra (attualmente delega alla creazione se {@code ob} è nullo).
+     * @param ob prestito selezionato (non gestito in modifica)
+     */
     @Override
     public void show(Prestito ob) {
         // I prestiti non vanno modificati
         show();
     }
 
+    /**
+     * Mostra la finestra in modalità creazione del prestito e registra il prestito alla conferma.
+     */
     @Override
     public void show() {
         ok.setOnAction((ActionEvent ev) -> {
-            Libro l = (Libro)libri.getSelectionModel().getSelectedItem();
-            Utente u = (Utente)utenti.getSelectionModel().getSelectedItem();
+            Libro l = libri.getSelectionModel().getSelectedItem();
+            Utente u = utenti.getSelectionModel().getSelectedItem();
             
             if(u.getLibri().toArray().length >= 3 || l.getnCopie() <= 0)
                 throw new RuntimeException("Prestito invalido");

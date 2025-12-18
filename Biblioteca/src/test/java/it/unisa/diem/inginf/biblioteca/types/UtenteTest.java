@@ -98,7 +98,7 @@ public class UtenteTest {
 
     @Test
     public void testToString() {
-        String outputAtteso = "Nome: Vincenzo, Cognome: Natale, Matricola: 0612709907, Email: v.natale10@studenti.unisa.it";
+        String outputAtteso = "Nome: Vincenzo, Cognome: Natale, Matricola: 0612709907, Email: v.natale10@studenti.unisa.it, Libri:\n";
         assertEquals(outputAtteso, utente.toString());
     }
     

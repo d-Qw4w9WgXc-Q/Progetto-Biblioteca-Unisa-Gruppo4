@@ -2,17 +2,16 @@ package it.unisa.diem.inginf.biblioteca.ui;
 
 import it.unisa.diem.inginf.biblioteca.Biblioteca;
 import it.unisa.diem.inginf.biblioteca.types.*;
-import javafx.application.Application;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
-import javafx.scene.Node;
 import javafx.event.*;
-import javafx.beans.binding.*;
-import javafx.beans.property.*;
 
 
+/**
+ * Finestra JavaFX per creare o modificare un {@link it.unisa.diem.inginf.biblioteca.types.Utente}.
+ */
 public class MenuUtente implements Menu<Utente> {
     
     private Stage stage;
@@ -26,6 +25,10 @@ public class MenuUtente implements Menu<Utente> {
     
     private Biblioteca biblioteca;
     
+    /**
+     * Crea il menu per inserimento/modifica utenti.
+     * @param biblioteca biblioteca di riferimento
+     */
     public MenuUtente(Biblioteca biblioteca) {
         this.biblioteca = biblioteca;
         
@@ -75,6 +78,10 @@ public class MenuUtente implements Menu<Utente> {
     }
     
     // Modifica Utente
+    /**
+     * Mostra la finestra in modalità modifica.
+     * @param u utente da modificare (se {@code null} apre la modalità creazione)
+     */
     @Override
     public void show(Utente u) {
         if(u == null) {
@@ -98,6 +105,9 @@ public class MenuUtente implements Menu<Utente> {
     }
     
     // Aggiungi nuovo utente
+    /**
+     * Mostra la finestra in modalità creazione di un nuovo utente.
+     */
     @Override
     public void show() {
         tNome.setText(null);
