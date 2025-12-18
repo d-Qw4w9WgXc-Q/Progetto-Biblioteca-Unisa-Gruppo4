@@ -51,10 +51,22 @@ public class Utente {
     public void setEmail(String email) {
         this.email = email;
     }
+
+    public Collection<Libro> getLibri() {
+        return libri;
+    }
+    
+    
     
     @Override
     public String toString() {
-        return String.format("Nome: %s, Cognome: %s, Matricola: %s, Email: %s", nome, cognome, matricola, email);
+        String ret = String.format("Nome: %s, Cognome: %s, Matricola: %s, Email: %s, Libri:\n", nome, cognome, matricola, email);
+        
+        for(Libro l : libri) {
+            ret += "- " + l.getTitolo() + "\n";
+        }
+        
+        return ret;
     }
 
     @Override

@@ -18,8 +18,9 @@ public class EditMenu {
     private Biblioteca biblioteca;
     private ObjectProperty<String> type;
     
-    private MenuUtente menuUtente;
-    private MenuLibro menuLibro;
+    private Menu<Utente> menuUtente;
+    private Menu<Libro> menuLibro;
+    private Menu<Prestito> menuPrestito;
     
     
     public EditMenu(Biblioteca b, ObjectProperty<String> type) {
@@ -28,6 +29,7 @@ public class EditMenu {
         
         menuUtente = new MenuUtente(b);
         menuLibro = new MenuLibro(b);
+        menuPrestito = new MenuPrestito(b);
 
     }
     
@@ -41,7 +43,7 @@ public class EditMenu {
                 menuLibro.show((Libro)ob);
                 break;
             case "Prestiti":
-                // menuPrestiti.show((Prestito)ob);
+                menuPrestito.show((Prestito)ob);
                 break;
             default: throw new RuntimeException(selection);
         }

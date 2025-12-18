@@ -13,18 +13,18 @@ import javafx.beans.binding.*;
 import javafx.beans.property.*;
 
 
-public class MenuUtente {
+public class MenuUtente implements Menu<Utente> {
     
     private Stage stage;
     
-    TextField tNome;
-    TextField tCognome;
-    TextField tMatricola;
-    TextField tEmail;
+    private TextField tNome;
+    private TextField tCognome;
+    private TextField tMatricola;
+    private TextField tEmail;
     
-    Button ok;
+    private Button ok;
     
-    Biblioteca biblioteca;
+    private Biblioteca biblioteca;
     
     public MenuUtente(Biblioteca biblioteca) {
         this.biblioteca = biblioteca;
@@ -75,6 +75,7 @@ public class MenuUtente {
     }
     
     // Modifica Utente
+    @Override
     public void show(Utente u) {
         if(u == null) {
             show();
@@ -97,6 +98,7 @@ public class MenuUtente {
     }
     
     // Aggiungi nuovo utente
+    @Override
     public void show() {
         tNome.setText(null);
         tCognome.setText(null);

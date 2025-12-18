@@ -4,30 +4,27 @@ package it.unisa.diem.inginf.biblioteca.ui;
 import it.unisa.diem.inginf.biblioteca.Biblioteca;
 import it.unisa.diem.inginf.biblioteca.types.*;
 import java.util.Arrays;
-import javafx.application.Application;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
 import javafx.scene.Node;
 import javafx.event.*;
-import javafx.beans.binding.*;
-import javafx.beans.property.*;
 
 
-public class MenuLibro {
+public class MenuLibro implements Menu<Libro> {
     
     private Stage stage;
     
-    TextField tTitolo;
-    TextField tISBN;
-    TextField tAutori;
-    TextField tAnnoPubblicazione;
-    TextField tNumeroCopie;
+    private TextField tTitolo;
+    private TextField tISBN;
+    private TextField tAutori;
+    private TextField tAnnoPubblicazione;
+    private TextField tNumeroCopie;
     
-    Button ok;
+    private Button ok;
     
-    Biblioteca biblioteca;
+    private Biblioteca biblioteca;
     
     
     public MenuLibro(Biblioteca biblioteca) {
@@ -84,6 +81,7 @@ public class MenuLibro {
     }
     
     // Modifica Libro
+    @Override
     public void show(Libro l) {
         if(l == null) {
             show();
@@ -109,6 +107,7 @@ public class MenuLibro {
     }
     
     // Aggiungi nuovo libro
+    @Override
     public void show() {
         tTitolo.setText(null);
         tISBN.setText(null);
