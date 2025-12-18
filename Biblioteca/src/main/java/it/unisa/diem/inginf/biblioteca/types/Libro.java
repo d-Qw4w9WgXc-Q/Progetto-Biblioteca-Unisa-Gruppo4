@@ -1,7 +1,6 @@
 package it.unisa.diem.inginf.biblioteca.types;
 
 import java.util.Collection;
-import java.util.ArrayList;
 import java.util.Objects;
 
 public class Libro {
@@ -16,8 +15,7 @@ public class Libro {
         this.ISBN = ISBN;
         this.nCopie = nCopie;
         this.annoPubblicazione = annoPublicazione;
-        
-        this.autori = new ArrayList<>(autori);
+        this.autori = autori;
     }
     
     public String getTitolo() {

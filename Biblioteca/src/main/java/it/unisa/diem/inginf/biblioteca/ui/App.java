@@ -71,6 +71,7 @@ public class App extends Application {
             }
         });
         
+
         Button add = new Button("+");
         Button remove = new Button("-");
         Button modify = new Button("*");
@@ -92,7 +93,7 @@ public class App extends Application {
             sortUtenti.getSelectionModel().select(null);
             sortLibri.getSelectionModel().select(null);
             sortPrestiti.getSelectionModel().select(null);
-            editMenu.show(((ListView)scrollpane.getContent()).getSelectionModel().getSelectedItem());
+            editMenu.show(((ListView)(((VBox)scrollpane.getContent()).getChildren().getLast())).getSelectionModel().getSelectedItem());
         });
         
         remove.setOnAction((ActionEvent ev) -> {
@@ -114,12 +115,18 @@ public class App extends Application {
         biblioteca.registraUtente(new Utente("Vincenzo", "Natale", "0612709907", "v.natale10@studenti.unisa.it"));
         biblioteca.registraUtente(new Utente("Matteo", "Nebbia", "0612709400", "m.nebbia@studenti.unisa.it"));
         
-
+        Ricerca r = new Ricerca(biblioteca, mode, lvUtenti, lvLibri);
+        Button searchmenu = new Button("Cerca..");
+        
+        searchmenu.setOnAction((ActionEvent ev) -> {
+            r.show();
+        });
         
         HBox controls = new HBox(add, modify, remove);
         
         GridPane grid = new GridPane();
         grid.add(mode, 0, 1);
+        grid.add(searchmenu, 1, 1);
         grid.add(scrollpane, 0, 2);
         grid.add(controls, 0, 3);
         Scene scene = new Scene(grid, 700, 500);
@@ -186,10 +193,10 @@ class SortPrestiti implements ChangeListener<String> {
     public void changed(ObservableValue<? extends String> ov, String oldValue, String newValue) {
         switch(newValue) {
             case "Data Prestito":
-                    // TODO
+                    biblioteca.ordinaPrestiti(new CompPrestitoDataPrestito());
                 break;
             case "Data Restituzione":
-                    // TODO
+                    biblioteca.ordinaPrestiti(new CompPrestitoDataRestituzione());
                 break;
         }
     }
