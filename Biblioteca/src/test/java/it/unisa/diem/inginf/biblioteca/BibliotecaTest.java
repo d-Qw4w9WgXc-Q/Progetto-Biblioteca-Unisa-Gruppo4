@@ -8,7 +8,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.Date;
-import javafx.collections.ObservableList;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeEach;
@@ -18,13 +17,13 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.TestInstance;
 
 /**
- *
+ * Test JUnit generati per {@link it.unisa.diem.inginf.biblioteca.Biblioteca}.
  * @author nebbi
  */
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class BibliotecaTest {
-    
+
     private Biblioteca biblioteca;
     private Utente utenteAttesoA;
     private Utente utenteAttesoB;
@@ -41,7 +40,15 @@ public class BibliotecaTest {
     Date dataRestituzioneAttesaB;
     private Prestito prestitoAttesoA;
     private Prestito prestitoAttesoB;
+    /**
+     * Costruttore di default del test.
+     */
+    public BibliotecaTest() {
+    }
     
+    /**
+     * Setup eseguito una volta prima della classe di test.
+     */
     @BeforeAll
     public void setUpClass() throws ParseException {
         utenteAttesoA = new Utente("Vincenzo", "Natale", "0612709907", "v.natale10@studenti.unisa.it");
@@ -60,21 +67,30 @@ public class BibliotecaTest {
         prestitoAttesoB = new Prestito(dataPrestitoAttesaB, dataRestituzioneAttesaB, libroAttesoB, utenteAttesoB);
     }
     
+    /**
+     * Teardown eseguito una volta dopo la classe di test.
+     */
     @AfterAll
     public static void tearDownClass() {
     }
     
+    /**
+     * Setup eseguito prima di ogni test.
+     */
     @BeforeEach
     public void setUp() {
         biblioteca = new Biblioteca();
     }
     
+    /**
+     * Teardown eseguito dopo ogni test.
+     */
     @AfterEach
     public void tearDown() {
     }
 
     /**
-     * Test of registraUtente method, of class Biblioteca.
+     * Verifica il comportamento di {@link Biblioteca#registraUtente(it.unisa.diem.inginf.biblioteca.types.Utente)}.
      */
     @Test
     public void testRegistraUtente() {
@@ -83,7 +99,7 @@ public class BibliotecaTest {
     }
 
     /**
-     * Test of cercaUtente method, of class Biblioteca.
+     * Verifica il comportamento di {@link Biblioteca#cercaUtente(it.unisa.diem.inginf.biblioteca.types.Utente, java.util.Comparator)}.
      */
     @Test
 
@@ -132,7 +148,7 @@ public class BibliotecaTest {
     
     
     /**
-     * Test of getUtenti method, of class Biblioteca.
+     * Verifica il comportamento di {@link Biblioteca#getUtenti()}.
      */
     @Test
     public void testGetUtenti() {
@@ -145,7 +161,7 @@ public class BibliotecaTest {
     }
 
     /**
-     * Test of eliminaUtente method, of class Biblioteca.
+     * Verifica il comportamento di {@link Biblioteca#eliminaUtente(it.unisa.diem.inginf.biblioteca.types.Utente)}.
      */
     @Test
     public void testEliminaUtente_Utente() {
@@ -157,7 +173,7 @@ public class BibliotecaTest {
     }
 
     /**
-     * Test of eliminaUtente method, of class Biblioteca.
+     * Verifica il comportamento di {@link Biblioteca#eliminaUtente(it.unisa.diem.inginf.biblioteca.types.Utente, java.util.Comparator)}.
      */
     @Test
     public void testEliminaUtentePerNome() {
@@ -193,7 +209,7 @@ public class BibliotecaTest {
     }
 
     /**
-     * Test of registraLibro method, of class Biblioteca.
+     * Verifica il comportamento di {@link Biblioteca#registraLibro(it.unisa.diem.inginf.biblioteca.types.Libro)}.
      */
     @Test
     public void testRegistraLibro() {
@@ -202,7 +218,7 @@ public class BibliotecaTest {
     }
 
     /**
-     * Test of cercaLibro method, of class Biblioteca.
+     * Verifica il comportamento di {@link Biblioteca#cercaLibro(it.unisa.diem.inginf.biblioteca.types.Libro, java.util.Comparator)}.
      */
     @Test
     public void testCercaLibroPerTitolo() {
@@ -244,7 +260,7 @@ public class BibliotecaTest {
     }
 
     /**
-     * Test of getLibri method, of class Biblioteca.
+     * Verifica il comportamento di {@link Biblioteca#getLibri()}.
      */
     @Test
     public void testGetLibri() {
@@ -257,7 +273,7 @@ public class BibliotecaTest {
     }
 
     /**
-     * Test of eliminaLibro method, of class Biblioteca.
+     * Verifica il comportamento di {@link Biblioteca#eliminaLibro(it.unisa.diem.inginf.biblioteca.types.Libro)}.
      */
     @Test
     public void testEliminaLibro_Libro() {
@@ -269,7 +285,7 @@ public class BibliotecaTest {
     }
 
     /**
-     * Test of eliminaLibro method, of class Biblioteca.
+     * Verifica il comportamento di {@link Biblioteca#eliminaLibro(it.unisa.diem.inginf.biblioteca.types.Libro, java.util.Comparator)}.
      */
     @Test
     public void testEliminaLibroPerTitolo() {
@@ -299,7 +315,7 @@ public class BibliotecaTest {
     }
 
     /**
-     * Test of registraPrestito method, of class Biblioteca.
+     * Verifica il comportamento di {@link Biblioteca#registraPrestito(it.unisa.diem.inginf.biblioteca.types.Prestito)}.
      */
     @Test
     public void testRegistraPrestito() {
@@ -308,7 +324,7 @@ public class BibliotecaTest {
     }
 
     /**
-     * Test of eliminaPrestito method, of class Biblioteca.
+     * Verifica il comportamento di {@link Biblioteca#eliminaPrestito(it.unisa.diem.inginf.biblioteca.types.Prestito)}.
      */
     @Test
     public void testEliminaPrestito_Prestito() {
@@ -319,7 +335,7 @@ public class BibliotecaTest {
     }
 
     /**
-     * Test of eliminaPrestito method, of class Biblioteca.
+     * Verifica il comportamento di {@link Biblioteca#eliminaPrestito(it.unisa.diem.inginf.biblioteca.types.Prestito, java.util.Comparator)}.
      */
     @Test
     public void testEliminaPrestito_Prestito_Comparator() {
@@ -331,10 +347,11 @@ public class BibliotecaTest {
     }
 
     /**
-     * Test of getPrestiti method, of class Biblioteca.
+     * Verifica il comportamento di {@link Biblioteca#getPrestiti()}.
      */
     @Test
     public void testGetPrestiti() {
         assertIterableEquals(biblioteca.prestiti, biblioteca.getPrestiti());
     }
+
 }
