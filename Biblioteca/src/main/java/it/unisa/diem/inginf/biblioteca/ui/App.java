@@ -122,11 +122,10 @@ public class App extends Application {
             r.show();
         });
         
-        HBox controls = new HBox(add, modify, remove);
+        HBox controls = new HBox(add, modify, remove, searchmenu);
         
         GridPane grid = new GridPane();
         grid.add(mode, 0, 1);
-        grid.add(searchmenu, 1, 1);
         grid.add(scrollpane, 0, 2);
         grid.add(controls, 0, 3);
         Scene scene = new Scene(grid, 700, 500);

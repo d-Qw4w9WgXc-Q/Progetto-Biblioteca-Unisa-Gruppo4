@@ -69,7 +69,7 @@ public class Ricerca {
         grid.add(campo, 0, 0);
         grid.add(ricerca, 0, 1);
         grid.add(ok, 1, 1);
-        Scene scene = new Scene(grid, 300, 300);
+        Scene scene = new Scene(grid, 300, 150);
         stage = new Stage();
         stage.setScene(scene);
         stage.setAlwaysOnTop(true);
