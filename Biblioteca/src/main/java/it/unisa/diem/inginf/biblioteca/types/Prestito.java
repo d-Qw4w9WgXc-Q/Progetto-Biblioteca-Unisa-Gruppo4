@@ -1,10 +1,11 @@
 package it.unisa.diem.inginf.biblioteca.types;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.text.SimpleDateFormat;
 
 
-public class Prestito {
+public class Prestito implements Serializable {
     private Date dataPrestito;
     private Date dataRestituzione;
     private Libro libro;

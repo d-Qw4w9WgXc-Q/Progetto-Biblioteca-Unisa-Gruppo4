@@ -1,9 +1,10 @@
 package it.unisa.diem.inginf.biblioteca.types;
 
+import java.io.Serializable;
 import java.util.Collection;
 import java.util.Objects;
 
-public class Libro {
+public class Libro implements Serializable {
     private String titolo;
     private String ISBN;
     private Collection<String> autori;

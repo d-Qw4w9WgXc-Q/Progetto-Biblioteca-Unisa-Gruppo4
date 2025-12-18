@@ -3,6 +3,7 @@ package it.unisa.diem.inginf.biblioteca.ui;
 import it.unisa.diem.inginf.biblioteca.Biblioteca;
 import it.unisa.diem.inginf.biblioteca.types.*;
 import it.unisa.diem.inginf.biblioteca.types.Comparators.*;
+import java.io.IOException;
 import javafx.application.Application;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
@@ -18,8 +19,9 @@ import javafx.beans.value.ObservableValue;
 public class App extends Application {
     @Override
     public void start(Stage stage) {
+        final Biblioteca biblioteca;
         
-        Biblioteca biblioteca = new Biblioteca();
+        biblioteca = Biblioteca.fromFile("ArchivioBiblioteca");
         
         
         ChoiceBox mode = new ChoiceBox();
@@ -112,8 +114,8 @@ public class App extends Application {
         });
         
         
-        biblioteca.registraUtente(new Utente("Vincenzo", "Natale", "0612709907", "v.natale10@studenti.unisa.it"));
-        biblioteca.registraUtente(new Utente("Matteo", "Nebbia", "0612709400", "m.nebbia@studenti.unisa.it"));
+        // biblioteca.registraUtente(new Utente("Vincenzo", "Natale", "0612709907", "v.natale10@studenti.unisa.it"));
+        // biblioteca.registraUtente(new Utente("Matteo", "Nebbia", "0612709400", "m.nebbia@studenti.unisa.it"));
         
         Ricerca r = new Ricerca(biblioteca, mode, lvUtenti, lvLibri);
         Button searchmenu = new Button("Cerca..");
@@ -122,7 +124,15 @@ public class App extends Application {
             r.show();
         });
         
-        HBox controls = new HBox(add, modify, remove, searchmenu);
+        Button save = new Button("Salva");
+        save.setOnAction((ActionEvent ev) -> {
+            try{
+                biblioteca.toFile("ArchivioBiblioteca");
+            } catch(IOException e) {
+            }
+        });
+        
+        HBox controls = new HBox(add, modify, remove, searchmenu, save);
         
         GridPane grid = new GridPane();
         grid.add(mode, 0, 1);

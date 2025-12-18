@@ -1,11 +1,12 @@
 package it.unisa.diem.inginf.biblioteca.types;
 
+import java.io.Serializable;
 import java.util.Objects;
 import java.util.Collection;
 import java.util.ArrayList;
 
 
-public class Utente {
+public class Utente implements Serializable {
     private String nome;
     private String cognome;
     private String matricola;
