@@ -1,6 +1,8 @@
 package it.unisa.diem.inginf.biblioteca.types;
 
 import java.util.Date;
+import java.text.SimpleDateFormat;
+
 
 public class Prestito {
     private Date dataPrestito;
@@ -33,5 +35,17 @@ public class Prestito {
 
     public Utente getUtente() {
         return utente;
+    }
+    
+    @Override
+    public String toString() {
+        Date oggi = new Date();
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        String ret = new String();
+        if(oggi.after(getDataRestituzione())) {
+            ret += "[RESTITUZIONE IN RITARDO]\n";
+        }
+        ret += String.format("%s preso da %s %s il %s, da restituire entro il %s\n", getLibro().getTitolo(), getUtente().getNome(), getUtente().getCognome(), sdf.format(getDataPrestito()), sdf.format(getDataRestituzione()));
+        return ret;
     }
 }

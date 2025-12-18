@@ -32,7 +32,7 @@ public class PrestitoTest {
         
         dataPrestitoAttesa = sdf.parse("01/01/2025");
         dataRestituzioneAttesa = sdf.parse("01/12/2025");
-        dataRestituzioneAttesa = sdf.parse("02/12/2025");
+        dataRestituzioneAttesa2 = sdf.parse("02/12/2025");
         
         prestito = new Prestito(dataPrestitoAttesa, dataRestituzioneAttesa, libro, utente);
     }
@@ -82,6 +82,15 @@ public class PrestitoTest {
     public void testGetUtente() {
 
         assertEquals(utente, prestito.getUtente());
+    }
+    
+    /**
+     * Test of toString method, of class Prestito.
+     */
+    @Test
+    public void testToString() {
+        
+        assertEquals("[RESTITUZIONE IN RITARDO]\nIl Signore Degli Anelli preso da Vincenzo Natale il 01/01/2025, da restituire entro il 01/12/2025\n", prestito.toString());
     }
     
 }
