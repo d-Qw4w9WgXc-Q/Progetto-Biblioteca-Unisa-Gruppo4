@@ -1,8 +1,12 @@
 package it.unisa.diem.inginf.biblioteca.types;
 
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 
 public class Prestito {
+    private static final DateTimeFormatter DATE_FORMAT = DateTimeFormatter.ISO_LOCAL_DATE;
+
     private Date dataPrestito;
     private Date dataRestituzione;
     private Libro libro;
@@ -33,5 +37,22 @@ public class Prestito {
 
     public Utente getUtente() {
         return utente;
+    }
+
+    private static String formatDate(Date date) {
+        if (date == null) {
+            return "N/D";
+        }
+        return date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate().format(DATE_FORMAT);
+    }
+
+    @Override
+    public String toString() {
+        String utenteStr = utente == null ? "N/D" : (utente.getNome() + " " + utente.getCognome());
+        String libroStr = libro == null ? "N/D" : libro.getTitolo();
+        return "Utente: " + utenteStr
+                + ", Libro: " + libroStr
+                + ", Data prestito: " + formatDate(dataPrestito)
+                + ", Scadenza: " + formatDate(dataRestituzione);
     }
 }

@@ -1,8 +1,6 @@
 package it.unisa.diem.inginf.biblioteca;
 
-import java.util.Collection;
 import java.util.Comparator;
-import java.util.TreeSet;
 import it.unisa.diem.inginf.biblioteca.types.*;
 import it.unisa.diem.inginf.biblioteca.ui.App;
 import javafx.collections.*;

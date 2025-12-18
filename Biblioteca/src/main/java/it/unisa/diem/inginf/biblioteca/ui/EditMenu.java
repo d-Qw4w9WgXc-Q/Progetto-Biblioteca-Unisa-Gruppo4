@@ -1,21 +1,14 @@
 package it.unisa.diem.inginf.biblioteca.ui;
 
 import it.unisa.diem.inginf.biblioteca.Biblioteca;
-import it.unisa.diem.inginf.biblioteca.types.*;
-import javafx.application.Application;
-import javafx.scene.control.*;
-import javafx.scene.layout.*;
-import javafx.stage.Stage;
-import javafx.scene.Scene;
-import javafx.scene.Node;
-import javafx.event.*;
-import javafx.beans.binding.*;
-import javafx.beans.property.*;
+import it.unisa.diem.inginf.biblioteca.types.Libro;
+import it.unisa.diem.inginf.biblioteca.types.Prestito;
+import it.unisa.diem.inginf.biblioteca.types.Utente;
+import javafx.beans.property.ObjectProperty;
 
 
 public class EditMenu {
     
-    private Biblioteca biblioteca;
     private ObjectProperty<String> type;
     
     private Menu<Utente> menuUtente;
@@ -24,7 +17,6 @@ public class EditMenu {
     
     
     public EditMenu(Biblioteca b, ObjectProperty<String> type) {
-        biblioteca = b;
         this.type = type;
         
         menuUtente = new MenuUtente(b);

@@ -5,12 +5,10 @@ import it.unisa.diem.inginf.biblioteca.Biblioteca;
 import it.unisa.diem.inginf.biblioteca.types.*;
 import java.time.ZoneId;
 import java.util.Date;
-import java.util.Arrays;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
-import javafx.scene.Node;
 import javafx.event.*;
 
 
@@ -18,8 +16,8 @@ public class MenuPrestito implements Menu<Prestito> {
     
     private Stage stage;
     
-    private ListView utenti;
-    private ListView libri;
+    private ListView<Utente> utenti;
+    private ListView<Libro> libri;
     
     private DatePicker data;
     
@@ -40,8 +38,8 @@ public class MenuPrestito implements Menu<Prestito> {
         stage.setScene(scene);
         
         
-        utenti = new ListView(b.getUtenti());
-        libri = new ListView(b.getLibri());
+        utenti = new ListView<>(b.getUtenti());
+        libri = new ListView<>(b.getLibri());
         
         data = new DatePicker();
         
@@ -77,8 +75,8 @@ public class MenuPrestito implements Menu<Prestito> {
     @Override
     public void show() {
         ok.setOnAction((ActionEvent ev) -> {
-            Libro l = (Libro)libri.getSelectionModel().getSelectedItem();
-            Utente u = (Utente)utenti.getSelectionModel().getSelectedItem();
+            Libro l = libri.getSelectionModel().getSelectedItem();
+            Utente u = utenti.getSelectionModel().getSelectedItem();
             
             if(u.getLibri().toArray().length >= 3 || l.getnCopie() <= 0)
                 throw new RuntimeException("Prestito invalido");

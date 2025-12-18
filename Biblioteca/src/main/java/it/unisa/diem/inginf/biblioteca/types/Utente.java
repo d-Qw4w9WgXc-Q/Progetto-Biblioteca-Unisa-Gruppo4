@@ -17,7 +17,7 @@ public class Utente {
         this.cognome = cognome;
         this.matricola = matricola;
         this.email = email;
-        libri = new ArrayList();
+        libri = new ArrayList<>();
     }
     
     public String getNome() {

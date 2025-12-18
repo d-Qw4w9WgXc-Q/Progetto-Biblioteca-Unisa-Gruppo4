@@ -2,15 +2,11 @@ package it.unisa.diem.inginf.biblioteca.ui;
 
 import it.unisa.diem.inginf.biblioteca.Biblioteca;
 import it.unisa.diem.inginf.biblioteca.types.*;
-import javafx.application.Application;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
-import javafx.scene.Node;
 import javafx.event.*;
-import javafx.beans.binding.*;
-import javafx.beans.property.*;
 
 
 public class MenuUtente implements Menu<Utente> {
