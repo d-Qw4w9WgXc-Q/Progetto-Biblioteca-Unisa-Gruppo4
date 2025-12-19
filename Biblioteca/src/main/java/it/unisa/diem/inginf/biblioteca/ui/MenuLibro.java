@@ -3,6 +3,7 @@ package it.unisa.diem.inginf.biblioteca.ui;
 
 import it.unisa.diem.inginf.biblioteca.Biblioteca;
 import it.unisa.diem.inginf.biblioteca.types.*;
+import it.unisa.diem.inginf.biblioteca.types.Comparators.*;
 import java.util.Arrays;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
@@ -110,6 +111,7 @@ public class MenuLibro implements Menu<Libro> {
             l.setAutori(Arrays.asList(tAutori.getText().split("\\s*,\\s*")));
             l.setnCopie(Integer.parseInt(tNumeroCopie.getText()));
             l.setAnnoPubblicazione(Integer.parseInt(tAnnoPubblicazione.getText()));
+            biblioteca.ordinaLibri(new CompLibroTitolo());
             stage.close();
         });
         

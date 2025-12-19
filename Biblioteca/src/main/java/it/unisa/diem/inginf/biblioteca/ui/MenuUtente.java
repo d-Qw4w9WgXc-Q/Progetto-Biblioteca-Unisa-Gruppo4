@@ -2,6 +2,7 @@ package it.unisa.diem.inginf.biblioteca.ui;
 
 import it.unisa.diem.inginf.biblioteca.Biblioteca;
 import it.unisa.diem.inginf.biblioteca.types.*;
+import it.unisa.diem.inginf.biblioteca.types.Comparators.*;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
@@ -98,6 +99,8 @@ public class MenuUtente implements Menu<Utente> {
             u.setCognome(tCognome.getText());
             u.setMatricola(tMatricola.getText());
             u.setEmail(tEmail.getText());
+            biblioteca.getUtenti().notifyAll();
+            biblioteca.ordinaUtenti(new CompUtenteNome());
             stage.close();
         });
         

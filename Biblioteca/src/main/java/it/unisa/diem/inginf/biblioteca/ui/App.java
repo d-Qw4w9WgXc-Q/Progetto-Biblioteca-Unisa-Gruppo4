@@ -102,10 +102,10 @@ public class App extends Application {
         });
         
         modify.setOnAction((ActionEvent ev) -> {
-        sortUtenti.getSelectionModel().select(null);
-        sortLibri.getSelectionModel().select(null);
-        sortPrestiti.getSelectionModel().select(null);
-        editMenu.show(((ListView)(((VBox)scrollpane.getContent()).getChildren().getLast())).getSelectionModel().getSelectedItem());
+            sortUtenti.getSelectionModel().select(null);
+            sortLibri.getSelectionModel().select(null);
+            sortPrestiti.getSelectionModel().select(null);
+            editMenu.show(((ListView)(((VBox)scrollpane.getContent()).getChildren().getLast())).getSelectionModel().getSelectedItem());
         });
         
         remove.setOnAction((ActionEvent ev) -> {
@@ -118,7 +118,11 @@ public class App extends Application {
                     biblioteca.eliminaLibro(lvLibri.getSelectionModel().getSelectedItem());
                     break;
                 case "Prestiti":
-                    biblioteca.eliminaPrestito(lvPrestiti.getSelectionModel().getSelectedItem());
+                    Prestito p = lvPrestiti.getSelectionModel().getSelectedItem();
+                    Libro l = p.getLibro();
+                    l.setnCopie(l.getnCopie() + 1);
+                    biblioteca.eliminaPrestito(p);
+                    biblioteca.ordinaLibri(new CompLibroTitolo());
                     break;
             }
         });
